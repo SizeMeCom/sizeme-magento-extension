@@ -1,0 +1,6 @@
+app/code/community/SizeMe/Measurements  app/code/community/SizeMe/Measurements
+app/design/adminhtml/default/default/layout/sizememeasurements.xml  app/design/adminhtml/default/default/layout/sizememeasurements.xml
+app/design/adminhtml/default/default/template/sizememeasurements  app/design/adminhtml/default/default/template/sizememeasurements
+app/design/frontend/base/default/layout/sizememeasurements.xml  app/design/frontend/base/default/layout/sizememeasurements.xml
+app/design/frontend/base/default/template/sizememeasurements  app/design/frontend/base/default/template/sizememeasurements
+etc/modules/SizeMe_Measurements.xml  etc/modules/SizeMe_Measurements.xml
