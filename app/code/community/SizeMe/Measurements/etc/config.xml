@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category  SizeMe
+ * @package   SizeMe_Measurements
+ * @author    SizeMe Ltd <magento@sizeme.com>
+ * @copyright Copyright (c) 2015 SizeMe Ltd (http://www.sizeme.com/)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <SizeMe_Measurements>
+            <version>0.1.0</version>
+        </SizeMe_Measurements>
+    </modules>
+    <global>
+        <resources>
+            <sizememeasurements_setup>
+                <setup>
+                    <module>SizeMe_Measurements</module>
+                    <class>SizeMe_Measurements_Model_Resource_Setup</class>
+                </setup>
+            </sizememeasurements_setup>
+        </resources>
+        <blocks>
+            <sizeme_measurements>
+                <class>SizeMe_Measurements_Block</class>
+            </sizeme_measurements>
+        </blocks>
+        <helpers>
+            <sizeme_measurements>
+                <class>SizeMe_Measurements_Helper</class>
+            </sizeme_measurements>
+        </helpers>
+        <models>
+            <sizeme_measurements>
+                <class>SizeMe_Measurements_Model</class>
+            </sizeme_measurements>
+        </models>
+        <events>
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <sizeme_measurements_core_block_abstract_to_html_before>
+                        <type>singleton</type>
+                        <class>SizeMe_Measurements_Model_Observer</class>
+                        <method>onCoreBlockAbstractToHtmlBefore</method>
+                    </sizeme_measurements_core_block_abstract_to_html_before>
+                </observers>
+            </core_block_abstract_to_html_before>
+            <adminhtml_catalog_product_edit_prepare_form>
+                <observers>
+                    <sizeme_measurements_adminhtml_catalog_product_edit_prepare_form>
+                        <type>singleton</type>
+                        <class>SizeMe_Measurements_Model_Observer</class>
+                        <method>onAdminhtmlCatalogProductEditPrepareForm</method>
+                    </sizeme_measurements_adminhtml_catalog_product_edit_prepare_form>
+                </observers>
+            </adminhtml_catalog_product_edit_prepare_form>
+        </events>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <sizeme_measurements>
+                    <file>sizememeasurements.xml</file>
+                </sizeme_measurements>
+            </updates>
+        </layout>
+    </frontend>
+    <adminhtml>
+        <layout>
+            <updates>
+                <sizeme_measurements>
+                    <file>sizememeasurements.xml</file>
+                </sizeme_measurements>
+            </updates>
+        </layout>
+    </adminhtml>
+    <default>
+        <sizeme_measurements>
+            <general>
+                <service_status>off</service_status>
+                <custom_size_selection>0</custom_size_selection>
+            </general>
+            <template_settings>
+                <replace_product_view_type_configurable_template>1</replace_product_view_type_configurable_template>
+            </template_settings>
+            <ui_options>
+                <prepend_top_header_element>body</prepend_top_header_element>
+                <append_in_content_toggler_element>.slider_text_below</append_in_content_toggler_element>
+                <actual_selection_element>option</actual_selection_element>
+                <visual_selection_element>div.sm-button</visual_selection_element>
+                <append_slider_element>.product-options-bottom</append_slider_element>
+                <size_selection_container_element>.product-box</size_selection_container_element>
+                <after_detailed_link_element>.product-options label.required</after_detailed_link_element>
+                <after_remorse_box_element>.footer address</after_remorse_box_element>
+                <append_detailed_view_element>.slider_text_below</append_detailed_view_element>
+                <insert_messages_element>.slider_text_more_below</insert_messages_element>
+                <append_size_guide_element>#detail</append_size_guide_element>
+            </ui_options>
+        </sizeme_measurements>
+    </default>
+</config>
