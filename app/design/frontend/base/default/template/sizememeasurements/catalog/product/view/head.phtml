@@ -1,0 +1,72 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category  SizeMe
+ * @package   SizeMe_Measurements
+ * @author    SizeMe Ltd <magento@sizeme.com>
+ * @copyright Copyright (c) 2015 SizeMe Ltd (http://www.sizeme.com/)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+
+<?php
+/**
+ * @var $this SizeMe_Measurements_Block_Head
+ */
+
+$uiOptions = $this->helper('sizeme_measurements')->getUiOptionsArray();
+?>
+
+<link rel="stylesheet" type="text/css" href="http://sizeme.com/static/css/sizeme-ui-1.0.css" />
+<link rel="stylesheet" type="text/css" href="http://sizeme.com/static/css/sizeme-ui-magento-1.0.css" />
+<link rel="stylesheet" type="text/css" href="http://sizeme.com/static/css/jqueryui/jquery-ui-1.9.2.custom.min.css" />
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://sizeme.com/static/js/jqueryui/jquery-ui-1.9.2.custom.min.js"></script>
+<script type="text/javascript" src="http://sizeme.com/api/sizeme-api-1.0.js"></script>
+<script type="text/javascript" src="http://sizeme.com/static/js/sizeme-ui-1.0.js"></script>
+
+<script type="text/javascript">
+    //<![CDATA[
+    var sizeme_options = {
+        service_status: "<?php echo $this->jsQuoteEscape($this->getServiceStatus()); ?>",
+        buttonize: "<?php echo $this->jsQuoteEscape($this->getCustomSizeSelection()); ?>",
+        splash_screen: "in_content",
+        banner_location: "in_content"
+    };
+
+    var sizeme_UI_options = {
+        prependTopHeaderTo: "<?php echo $this->jsQuoteEscape($uiOptions['prepend_top_header_element']); ?>",
+        appendInContentToggler: "<?php echo $this->jsQuoteEscape($uiOptions['append_in_content_toggler_element']); ?>",
+        actualSelectionElement: "<?php echo $this->jsQuoteEscape($uiOptions['actual_selection_element']); ?>",
+        visualSelectionElement: "<?php echo $this->jsQuoteEscape($uiOptions['visual_selection_element']); ?>",
+        appendSliderTo: "<?php echo $this->jsQuoteEscape($uiOptions['append_slider_element']); ?>",
+        sizeSelectionContainer: "<?php echo $this->jsQuoteEscape($uiOptions['size_selection_container_element']); ?>",
+        afterDetailedLinkTo: "<?php echo $this->jsQuoteEscape($uiOptions['after_detailed_link_element']); ?>",
+        afterRemorseBoxTo: "<?php echo $this->jsQuoteEscape($uiOptions['after_remorse_box_element']); ?>",
+        appendDetailedView: "<?php echo $this->jsQuoteEscape($uiOptions['append_detailed_view_element']); ?>",
+        insertMessages: "<?php echo $this->jsQuoteEscape($uiOptions['insert_messages_element']); ?>",
+        appendSizeGuide: "<?php echo $this->jsQuoteEscape($uiOptions['append_size_guide_element']); ?>"
+    };
+    if (jQuery) {
+        jQuery.noConflict(true);
+    }
+    //]]>
+</script>

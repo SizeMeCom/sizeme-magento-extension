@@ -1,0 +1,58 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category  SizeMe
+ * @package   SizeMe_Measurements
+ * @author    SizeMe Ltd <magento@sizeme.com>
+ * @copyright Copyright (c) 2015 SizeMe Ltd (http://www.sizeme.com/)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+
+<?php
+/**
+ * @var $this SizeMe_Measurements_Block_Catalog_Product_View_Content
+ */
+$product = $this->getProduct();
+
+$type = (int)$product->getSmiItemType();
+$layer = (int)$product->getSmiItemLayer();
+$thickness = (int)$product->getSmiItemThickness();
+$stretch = (int)$product->getSmiItemStretch();
+/** @var SizeMe_Measurements_Helper_Data $helper */
+$helper = Mage::helper('sizeme_measurements');
+?>
+
+<script type="text/javascript">
+    //<![CDATA[
+    /* todo: consider changing variable name to "sizeme_product", to avoid name collisions in the global scope. confirm with SizeMe. */
+    var product = {
+        name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
+        item: new SizeMe.Item(<?php echo $type; ?>, <?php echo $layer; ?>, <?php echo $thickness; ?>, <?php echo $stretch; ?>)
+    <?php foreach ($this->getVariations($product) as $variation): ?>
+        .addSize(<?php echo (int)$helper->getSizeAttributeValue($variation); ?>, new SizeMe.Map()
+        <?php foreach ($this->getVariationSizeMeAttributes($variation) as $name => $value): ?>
+            .addItem("<?php echo $this->jsQuoteEscape($name); ?>", <?php echo(int)$value; ?>)
+        <?php endforeach; ?>
+        )
+    <?php endforeach; ?>
+    };
+    //]]>
+</script>
