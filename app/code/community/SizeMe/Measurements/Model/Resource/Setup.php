@@ -45,11 +45,11 @@ class SizeMe_Measurements_Model_Resource_Setup extends Mage_Eav_Model_Entity_Set
                 'group' => SizeMe_Measurements_Helper_Data::ATTRIBUTE_GROUP_NAME,
                 'label' => 'SizeMe Item Type',
                 'visible' => true,
-                'type' => 'int',
+                'type' => 'varchar',
                 'input' => 'text',
                 'required' => false,
                 'user_defined' => 1,
-                'default' => 0,
+                'default' => '',
                 'global' => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
                 'unique' => false
             ),
