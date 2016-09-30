@@ -84,7 +84,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * The module attribute set name.
      */
-    const ATTRIBUTE_GROUP_NAME = 'SizeMe Measurements';
+    const ATTRIBUTE_GROUP_NAME = 'SizeMe Item';
 
     /**
      * Returns the service status for the store.
