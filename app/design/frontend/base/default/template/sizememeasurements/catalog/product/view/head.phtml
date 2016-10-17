@@ -34,39 +34,33 @@
 $uiOptions = $this->helper('sizeme_measurements')->getUiOptionsArray();
 ?>
 
-<link rel="stylesheet" type="text/css" href="http://sizeme.com/static/css/sizeme-ui-1.0.css" />
-<link rel="stylesheet" type="text/css" href="http://sizeme.com/static/css/sizeme-ui-magento-1.0.css" />
-<link rel="stylesheet" type="text/css" href="http://sizeme.com/static/css/jqueryui/jquery-ui-1.9.2.custom.min.css" />
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="http://sizeme.com/static/js/jqueryui/jquery-ui-1.9.2.custom.min.js"></script>
-<script type="text/javascript" src="http://sizeme.com/api/sizeme-api-1.0.js"></script>
-<script type="text/javascript" src="http://sizeme.com/static/js/sizeme-ui-1.0.js"></script>
+<link rel="stylesheet" type="text/css" href="//sizeme.com/2.2/css/sizeme-magento.min.css" />
+<script type="text/javascript" src="//sizeme.com/2.2/js/sizeme-magento.min.js"></script>
 
 <script type="text/javascript">
     //<![CDATA[
     var sizeme_options = {
         service_status: "<?php echo $this->jsQuoteEscape($this->getServiceStatus()); ?>",
-        buttonize: "<?php echo $this->jsQuoteEscape($this->getCustomSizeSelection()); ?>",
-        splash_screen: "in_content",
-        banner_location: "in_content"
+        buttonize: "<?php echo $this->jsQuoteEscape($this->getCustomSizeSelection()); ?>"
     };
+	
+<?php
 
-    var sizeme_UI_options = {
-        prependTopHeaderTo: "<?php echo $this->jsQuoteEscape($uiOptions['prepend_top_header_element']); ?>",
-        appendInContentToggler: "<?php echo $this->jsQuoteEscape($uiOptions['append_in_content_toggler_element']); ?>",
-        actualSelectionElement: "<?php echo $this->jsQuoteEscape($uiOptions['actual_selection_element']); ?>",
-        visualSelectionElement: "<?php echo $this->jsQuoteEscape($uiOptions['visual_selection_element']); ?>",
-        appendSliderTo: "<?php echo $this->jsQuoteEscape($uiOptions['append_slider_element']); ?>",
-        sizeSelectionContainer: "<?php echo $this->jsQuoteEscape($uiOptions['size_selection_container_element']); ?>",
-        afterDetailedLinkTo: "<?php echo $this->jsQuoteEscape($uiOptions['after_detailed_link_element']); ?>",
-        afterRemorseBoxTo: "<?php echo $this->jsQuoteEscape($uiOptions['after_remorse_box_element']); ?>",
-        appendDetailedView: "<?php echo $this->jsQuoteEscape($uiOptions['append_detailed_view_element']); ?>",
-        insertMessages: "<?php echo $this->jsQuoteEscape($uiOptions['insert_messages_element']); ?>",
-        appendSizeGuide: "<?php echo $this->jsQuoteEscape($uiOptions['append_size_guide_element']); ?>"
-    };
-    if (jQuery) {
-        jQuery.noConflict(true);
-    }
+	$allSizeMeOptions = array(
+							'appendContentTo' => 'append_content_to',
+							'appendSplashTo' => 'append_splash_to',
+							'sizeSelectionElement' => 'size_selection_element',
+							'addToCartElement' => 'add_to_cart_element',
+							'addToCartEvent' => 'add_to_cart_event',
+							'firstRecommendation' => 'first_recommendation',
+							'lang' => 'lang_override',
+						);
+						
+	foreach($allSizeMeOptions as $key => $value) {
+		// write all non-empty fields to override platform specific default values defined in standard js
+		if (trim($uiOptions[$value])) echo $key.': "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
+	}
+	
+?>	
     //]]>
 </script>

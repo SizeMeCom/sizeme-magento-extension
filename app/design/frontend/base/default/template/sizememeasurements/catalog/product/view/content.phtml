@@ -42,8 +42,7 @@ $helper = Mage::helper('sizeme_measurements');
 
 <script type="text/javascript">
     //<![CDATA[
-    /* todo: consider changing variable name to "sizeme_product", to avoid name collisions in the global scope. confirm with SizeMe. */
-    var product = {
+    var sizeme_product = {
         name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
         item: new SizeMe.Item(<?php echo $type; ?>, <?php echo $layer; ?>, <?php echo $thickness; ?>, <?php echo $stretch; ?>)
     <?php foreach ($this->getVariations($product) as $variation): ?>

@@ -105,17 +105,13 @@
                 <replace_product_view_type_configurable_template>1</replace_product_view_type_configurable_template>
             </template_settings>
             <ui_options>
-                <prepend_top_header_element>body</prepend_top_header_element>
-                <append_in_content_toggler_element>.slider_text_below</append_in_content_toggler_element>
-                <actual_selection_element>option</actual_selection_element>
-                <visual_selection_element>div.sm-button</visual_selection_element>
-                <append_slider_element>.product-options-bottom</append_slider_element>
-                <size_selection_container_element>.product-box</size_selection_container_element>
-                <after_detailed_link_element>.product-options label.required</after_detailed_link_element>
-                <after_remorse_box_element>.footer address</after_remorse_box_element>
-                <append_detailed_view_element>.slider_text_below</append_detailed_view_element>
-                <insert_messages_element>.slider_text_more_below</insert_messages_element>
-                <append_size_guide_element>#detail</append_size_guide_element>
+                <append_content_to></append_content_to>
+                <append_splash_to></append_splash_to>
+                <size_selection_element></size_selection_element>
+                <add_to_cart_element></add_to_cart_element>
+                <add_to_cart_event></add_to_cart_event>
+                <first_recommendation></first_recommendation>
+                <lang_override></lang_override>
             </ui_options>
         </sizeme_measurements>
     </default>

@@ -54,17 +54,13 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * UI option store config save paths.
      */
-    const XML_PATH_UI_OPTION_PREPEND_TOP_HEADER_ELEMENT        = 'sizeme_measurements/ui_options/prepend_top_header_element';
-    const XML_PATH_UI_OPTION_APPEND_IN_CONTENT_TOGGLER_ELEMENT = 'sizeme_measurements/ui_options/append_in_content_toggler_element';
-    const XML_PATH_UI_OPTION_ACTUAL_SELECTION_ELEMENT          = 'sizeme_measurements/ui_options/actual_selection_element';
-    const XML_PATH_UI_OPTION_VISUAL_SELECTION_ELEMENT          = 'sizeme_measurements/ui_options/visual_selection_element';
-    const XML_PATH_UI_OPTION_APPEND_SLIDER_ELEMENT             = 'sizeme_measurements/ui_options/append_slider_element';
-    const XML_PATH_UI_OPTION_SIZE_SELECTION_CONTAINER_ELEMENT  = 'sizeme_measurements/ui_options/size_selection_container_element';
-    const XML_PATH_UI_OPTION_AFTER_DETAILED_LINK_ELEMENT       = 'sizeme_measurements/ui_options/after_detailed_link_element';
-    const XML_PATH_UI_OPTION_AFTER_REMORSE_BOX_ELEMENT         = 'sizeme_measurements/ui_options/after_remorse_box_element';
-    const XML_PATH_UI_OPTION_APPEND_DETAILED_VIEW_ELEMENT      = 'sizeme_measurements/ui_options/append_detailed_view_element';
-    const XML_PATH_UI_OPTION_INSERT_MESSAGES_ELEMENT           = 'sizeme_measurements/ui_options/insert_messages_element';
-    const XML_PATH_UI_OPTION_APPEND_SIZE_GUIDE_ELEMENT         = 'sizeme_measurements/ui_options/append_size_guide_element';
+    const XML_PATH_UI_OPTION_APPEND_CONTENT_TO 		= 'sizeme_measurements/ui_options/append_content_to';
+    const XML_PATH_UI_OPTION_APPEND_SPLASH_TO   	= 'sizeme_measurements/ui_options/append_splash_to';
+    const XML_PATH_UI_OPTION_SIZE_SELECTION_ELEMENT = 'sizeme_measurements/ui_options/size_selection_element';
+    const XML_PATH_UI_OPTION_ADD_TO_CART_ELEMENT	= 'sizeme_measurements/ui_options/add_to_cart_element';
+    const XML_PATH_UI_OPTION_ADD_TO_CART_EVENT  	= 'sizeme_measurements/ui_options/add_to_cart_event';
+    const XML_PATH_UI_OPTION_FIRST_RECOMMENDATION   = 'sizeme_measurements/ui_options/first_recommendation';
+    const XML_PATH_UI_OPTION_LANG_OVERRIDE         	= 'sizeme_measurements/ui_options/lang_override';
 
     /**
      * Service status on.
@@ -85,6 +81,11 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
      * The module attribute set name.
      */
     const ATTRIBUTE_GROUP_NAME = 'SizeMe Item';
+	
+    /**
+     * The SizeMe size attribute element class name
+     */
+    const SIZE_ATTRIBUTE_CLASS_NAME = 'sizeme-magento-size-selector';	
 
     /**
      * Returns the service status for the store.
@@ -139,60 +140,30 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     public function getUiOptionsArray(Mage_Core_Model_Store $store = null)
     {
         return array(
-            'prepend_top_header_element'        => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_PREPEND_TOP_HEADER_ELEMENT, $store
-            ),
-            'append_in_content_toggler_element' => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_APPEND_IN_CONTENT_TOGGLER_ELEMENT,
+            'append_content_to' => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_APPEND_CONTENT_TO,
                 $store
             ),
-            'actual_selection_element'          => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_ACTUAL_SELECTION_ELEMENT, $store
+            'append_splash_to' => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_APPEND_SPLASH_TO, $store
             ),
-            'visual_selection_element'          => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_VISUAL_SELECTION_ELEMENT, $store
+            'size_selection_element' => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_SIZE_SELECTION_ELEMENT, $store
             ),
-            'append_slider_element'             => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_APPEND_SLIDER_ELEMENT, $store
+            'add_to_cart_element' => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_ADD_TO_CART_ELEMENT, $store
             ),
-            'size_selection_container_element'  => Mage::getStoreConfig(
+            'add_to_cart_event'  => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_SIZE_SELECTION_CONTAINER_ELEMENT,
                 $store
             ),
-            'after_detailed_link_element'       => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_AFTER_DETAILED_LINK_ELEMENT, $store
+            'first_recommendation' => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_FIRST_RECOMMENDATION, $store
             ),
-            'after_remorse_box_element'         => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_AFTER_REMORSE_BOX_ELEMENT, $store
-            ),
-            'append_detailed_view_element'      => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_APPEND_DETAILED_VIEW_ELEMENT, $store
-            ),
-            'insert_messages_element'           => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_INSERT_MESSAGES_ELEMENT, $store
-            ),
-            'append_size_guide_element'         => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_APPEND_SIZE_GUIDE_ELEMENT, $store
+            'lang_override' => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_LANG_OVERRIDE, $store
             ),
         );
-    }
-
-    /**
-     * Returns the SizeMe CSS element class name of the size selection container.
-     *
-     * @param Mage_Core_Model_Store $store optional store (will use current store if null).
-     *
-     * @return string the CSS element class.
-     */
-    public function getSizeSelectionContainerElementClassName(Mage_Core_Model_Store $store = null)
-    {
-        $element = Mage::getStoreConfig(
-            self::XML_PATH_UI_OPTION_SIZE_SELECTION_CONTAINER_ELEMENT, $store
-        );
-
-        return is_string($element) ? preg_replace(
-            '/[^a-z0-9-]+/i', '', $element
-        ) : '';
     }
 
     /**
