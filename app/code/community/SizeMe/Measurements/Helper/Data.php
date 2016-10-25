@@ -154,7 +154,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
                 self::XML_PATH_UI_OPTION_ADD_TO_CART_ELEMENT, $store
             ),
             'add_to_cart_event'  => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_SIZE_SELECTION_CONTAINER_ELEMENT,
+                self::XML_PATH_UI_OPTION_ADD_TO_CART_EVENT,
                 $store
             ),
             'first_recommendation' => Mage::getStoreConfig(
