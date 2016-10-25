@@ -53,7 +53,6 @@ class SizeMe_Measurements_Block_Catalog_Product_View_Content extends Mage_Catalo
         $product = $this->getProduct();
         if (!$helper->isActive()
             || !$product->isConfigurable()
-            || $helper->hasSwatchAttributes($product)
         ) {
             return '';
         }

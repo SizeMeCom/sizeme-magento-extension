@@ -50,7 +50,6 @@ class SizeMe_Measurements_Block_Catalog_Product_View_Head extends Mage_Catalog_B
         $product = $this->getProduct();
         if (!$helper->isActive()
             || !$product->isConfigurable()
-            || $helper->hasSwatchAttributes($product)
         ) {
             return '';
         }
