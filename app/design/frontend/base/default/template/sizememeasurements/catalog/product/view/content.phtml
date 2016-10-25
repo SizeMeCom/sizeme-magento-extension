@@ -32,7 +32,7 @@
  */
 $product = $this->getProduct();
 
-$type = (int)$product->getSmiItemType();
+$type = (string)$product->getSmiItemType();
 $layer = (int)$product->getSmiItemLayer();
 $thickness = (int)$product->getSmiItemThickness();
 $stretch = (int)$product->getSmiItemStretch();
@@ -44,7 +44,7 @@ $helper = Mage::helper('sizeme_measurements');
     //<![CDATA[
     var sizeme_product = {
         name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
-        item: new SizeMe.Item(<?php echo $type; ?>, <?php echo $layer; ?>, <?php echo $thickness; ?>, <?php echo $stretch; ?>)
+        item: new SizeMe.Item("<?php echo $type; ?>", <?php echo $layer; ?>, <?php echo $thickness; ?>, <?php echo $stretch; ?>)
     <?php foreach ($this->getVariations($product) as $variation): ?>
         .addSize(<?php echo (int)$helper->getSizeAttributeValue($variation); ?>, new SizeMe.Map()
         <?php foreach ($this->getVariationSizeMeAttributes($variation) as $name => $value): ?>

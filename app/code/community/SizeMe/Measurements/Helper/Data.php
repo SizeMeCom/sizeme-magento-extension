@@ -83,11 +83,6 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     const ATTRIBUTE_GROUP_NAME = 'SizeMe Item';
 	
     /**
-     * The SizeMe size attribute element class name
-     */
-    const SIZE_ATTRIBUTE_CLASS_NAME = 'sizeme-magento-size-selector';	
-
-    /**
      * Returns the service status for the store.
      *
      * @param Mage_Core_Model_Store $store optional store (will use current store if null).

@@ -68,7 +68,7 @@ $sizeMeHelper = Mage::helper('sizeme_measurements');
 
             if (!$_rendered):
                 $sizeMeClass = $sizeMeHelper->isSizeAttribute($_attribute)
-                    ? $sizeMeHelper->SIZE_ATTRIBUTE_CLASS_NAME
+                    ? 'sizeme-magento-size-selector'
                     : '';
                 ?>
                 <dt><label class="required"><em>*</em><?php echo $_attribute->getLabel() ?></label></dt>
