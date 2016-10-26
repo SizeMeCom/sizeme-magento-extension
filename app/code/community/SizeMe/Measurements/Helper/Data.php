@@ -243,17 +243,19 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * Checks if the swatches attributes is found in SizeMe attributes.
+     * Checks which SizeMe attributes are swatches attributes.
      *
      * @param Mage_Catalog_Model_Product $product
      *
      * @return bool
      */
-    public function hasSwatchAttributes($product)
+    public function getSwatchAttributes($product)
     {
         if (!$this->isSwatchesEnabled()) {
             return false;
         }
+		
+		$arr = array();
 
         $swatchesAttributeIds = $this->parseAttributeIds(
             Mage::getStoreConfig('configswatches/general/swatch_attributes')
@@ -274,12 +276,11 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
                 if (in_array(
                     $attribute->getData('attribute_id'), $swatchesAttributeIds
                 )) {
-                    return true;
+                    $arr[] = $attribute->getData('attribute_id');
                 }
             }
         }
-
-        return false;
+        return $arr;
     }
 
     /**

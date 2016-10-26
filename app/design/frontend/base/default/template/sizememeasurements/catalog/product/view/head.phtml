@@ -31,7 +31,6 @@
  * @var $this SizeMe_Measurements_Block_Head
  */
 
-$uiOptions = $this->helper('sizeme_measurements')->getUiOptionsArray();
 ?>
 
 <!--
@@ -51,6 +50,9 @@ var sizeme_options = {
 	
 <?php
 
+	// UI OPTIONS
+	$uiOptions = $this->helper('sizeme_measurements')->getUiOptionsArray();
+	
 	$allSizeMeOptions = array(
 							'appendContentTo' => 'append_content_to',
 							'appendSplashTo' => 'append_splash_to',
@@ -64,6 +66,16 @@ var sizeme_options = {
 	foreach($allSizeMeOptions as $key => $value) {
 		// write all non-empty fields to override platform specific default values defined in standard js
 		if (trim($uiOptions[$value])) echo 'sizeme_UI_options.'.$key.' = "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
+	}
+	
+	// SWATCHES
+	$product = $this->getProduct();	
+	$swatch_attributes = $this->helper('sizeme_measurements')->getSwatchAttributes($product);
+
+	if ($swatch_attributes) {
+		echo 'sizeme_UI_options.sizeSelectionElement = "select#attribute'.reset($swatch_attributes).'";'.PHP_EOL;
+		echo 'sizeme_UI_options.sizeChangeClickElement = "a.swatch-link-'.reset($swatch_attributes).'";'.PHP_EOL;
+		echo 'sizeme_UI_options.firstRecommendation = false;'.PHP_EOL;
 	}
 	
 ?>	
