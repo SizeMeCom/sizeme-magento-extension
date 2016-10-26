@@ -38,16 +38,16 @@ $uiOptions = $this->helper('sizeme_measurements')->getUiOptionsArray();
 <link rel="stylesheet" type="text/css" href="//sizeme.com/2.2/css/sizeme-magento.min.css" />
 <script type="text/javascript" src="//sizeme.com/2.2/js/sizeme-magento.min.js"></script>
 -->
-<link rel="stylesheet" type="text/css" href="//sizeme.greitco.com/2.2/css/sizeme-magento.min.css" />
-<script type="text/javascript" src="//sizeme.greitco.com/2.2/js/sizeme-magento.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//sizeme.greitco.com/2.2/css/sizeme-magento.css" />
+<script type="text/javascript" src="//sizeme.greitco.com/2.2/js/sizeme-magento.js"></script>
 
 
 <script type="text/javascript">
-    //<![CDATA[
-    var sizeme_options = {
-        service_status: "<?php echo $this->jsQuoteEscape($this->getServiceStatus()); ?>",
-        buttonize: "<?php echo $this->jsQuoteEscape($this->getCustomSizeSelection()); ?>"
-    };
+//<![CDATA[
+var sizeme_options = {
+	service_status: "<?php echo $this->jsQuoteEscape($this->getServiceStatus()); ?>",
+	buttonize: "<?php echo $this->jsQuoteEscape($this->getCustomSizeSelection()); ?>"
+};
 	
 <?php
 
@@ -61,11 +61,19 @@ $uiOptions = $this->helper('sizeme_measurements')->getUiOptionsArray();
 							'lang' => 'lang_override',
 						);
 						
+	$writeSizeMeOptions = '';
+						
 	foreach($allSizeMeOptions as $key => $value) {
 		// write all non-empty fields to override platform specific default values defined in standard js
-		if (trim($uiOptions[$value])) echo $key.': "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
+		if (trim($uiOptions[$value])) $writeSizeMeOptions .= ' '.$key.': "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'",'.PHP_EOL;
+	}
+	
+	if ($writeSizeMeOptions) {
+		echo "var sizeme_UI_options = {".PHP_EOL;
+		echo $writeSizeMeOptions;
+		echo "};".PHP_EOL;
 	}
 	
 ?>	
-    //]]>
+//]]>
 </script>
