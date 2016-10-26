@@ -67,7 +67,7 @@ $sizeMeHelper = Mage::helper('sizeme_measurements');
             endforeach;
 
             if (!$_rendered):
-                $sizeMeClass = $sizeMeHelper->isSizeAttribute($_attribute)
+                $sizeMeClass = ( ($sizeMeHelper->isSizeAttribute($_attribute)) && ($sizeMeHelper->isActive()) )
                     ? 'sizeme-magento-size-selector'
                     : '';
                 ?>

@@ -61,17 +61,9 @@ var sizeme_options = {
 							'lang' => 'lang_override',
 						);
 						
-	$writeSizeMeOptions = '';
-						
 	foreach($allSizeMeOptions as $key => $value) {
 		// write all non-empty fields to override platform specific default values defined in standard js
-		if (trim($uiOptions[$value])) $writeSizeMeOptions .= ' '.$key.': "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'",'.PHP_EOL;
-	}
-	
-	if ($writeSizeMeOptions) {
-		echo "var sizeme_UI_options = {".PHP_EOL;
-		echo $writeSizeMeOptions;
-		echo "};".PHP_EOL;
+		if (trim($uiOptions[$value])) echo 'sizeme_UI_options.'.$key.' = "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
 	}
 	
 ?>	
