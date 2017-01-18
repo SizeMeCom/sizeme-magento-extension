@@ -58,7 +58,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_UI_OPTION_APPEND_SPLASH_TO   	= 'sizeme_measurements/ui_options/append_splash_to';
     const XML_PATH_UI_OPTION_SIZE_SELECTION_ELEMENT = 'sizeme_measurements/ui_options/size_selection_element';
     const XML_PATH_UI_OPTION_INVOKE_ELEMENT			= 'sizeme_measurements/ui_options/invoke_element';
-    const XML_PATH_UI_OPTION_INVOKE_EVENT  			= 'sizeme_measurements/ui_options/invoke_event';	
+    const XML_PATH_UI_OPTION_INVOKE_EVENT  			= 'sizeme_measurements/ui_options/invoke_event';
     const XML_PATH_UI_OPTION_ADD_TO_CART_ELEMENT	= 'sizeme_measurements/ui_options/add_to_cart_element';
     const XML_PATH_UI_OPTION_ADD_TO_CART_EVENT  	= 'sizeme_measurements/ui_options/add_to_cart_event';
     const XML_PATH_UI_OPTION_FIRST_RECOMMENDATION   = 'sizeme_measurements/ui_options/first_recommendation';
@@ -84,7 +84,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
      * The module attribute set name.
      */
     const ATTRIBUTE_GROUP_NAME = 'SizeMe Item';
-	
+
     /**
      * Returns the service status for the store.
      *
@@ -152,15 +152,13 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
                 self::XML_PATH_UI_OPTION_INVOKE_ELEMENT, $store
             ),
             'invoke_event'  => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_INVOKE_EVENT,
-                $store
-            ),			
+                self::XML_PATH_UI_OPTION_INVOKE_EVENT, $store
+            ),
             'add_to_cart_element' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_ADD_TO_CART_ELEMENT, $store
             ),
             'add_to_cart_event'  => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_ADD_TO_CART_EVENT,
-                $store
+                self::XML_PATH_UI_OPTION_ADD_TO_CART_EVENT, $store
             ),
             'first_recommendation' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_FIRST_RECOMMENDATION, $store
@@ -170,7 +168,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             ),
             'custom_css' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_CUSTOM_CSS, $store
-            ),			
+            ),
         );
     }
 
@@ -267,7 +265,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
         if (!$this->isSwatchesEnabled()) {
             return false;
         }
-		
+
 		$arr = array();
 
         $swatchesAttributeIds = $this->parseAttributeIds(

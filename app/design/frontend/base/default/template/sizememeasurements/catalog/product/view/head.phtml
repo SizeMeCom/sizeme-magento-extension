@@ -61,13 +61,20 @@ var sizeme_options = {
 							'invokeEvent' => 'invoke_event',							
 							'addToCartElement' => 'add_to_cart_element',
 							'addToCartEvent' => 'add_to_cart_event',
-							'firstRecommendation' => 'first_recommendation',
 							'lang' => 'lang_override',
 						);
 						
 	foreach($allSizeMeOptions as $key => $value) {
 		// write all non-empty fields to override platform specific default values defined in standard js
 		if (trim($uiOptions[$value])) echo 'SizeMe.UI.options.'.$key.' = "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
+	}
+
+	// possible first recommendation value override
+	$value = 'first_recommendation';
+	if (trim($uiOptions[$value])) {
+		$write_value = trim(strtolower($uiOptions[$value]));
+		$allowed_values = array('true', '1', 'false', '0');
+		if (in_array($write_value, $allowed_values)) echo 'SizeMe.UI.options.firstRecommendation = '.$write_value.';'.PHP_EOL;	
 	}
 	
 	// SWATCHES
