@@ -34,11 +34,11 @@
 ?>
 
 <!--
-<link rel="stylesheet" type="text/css" href="//sizeme.com/2.2/css/sizeme-magento.min.css" />
-<script type="text/javascript" src="//sizeme.com/2.2/js/sizeme-magento.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//sizeme.com/2.3/css/sizeme-magento.min.css" />
+<script type="text/javascript" src="//sizeme.com/2.3/js/sizeme-magento.min.js"></script>
 -->
-<link rel="stylesheet" type="text/css" href="//sizeme.greitco.com/2.2/css/sizeme-magento.css" />
-<script type="text/javascript" src="//sizeme.greitco.com/2.2/js/sizeme-magento.js"></script>
+<link rel="stylesheet" type="text/css" href="//sizeme.greitco.com/2.3/css/sizeme-magento.css" />
+<script type="text/javascript" src="//sizeme.greitco.com/2.3/js/sizeme-magento.js"></script>
 
 
 <script type="text/javascript">
@@ -65,7 +65,7 @@ var sizeme_options = {
 						
 	foreach($allSizeMeOptions as $key => $value) {
 		// write all non-empty fields to override platform specific default values defined in standard js
-		if (trim($uiOptions[$value])) echo 'sizeme_UI_options.'.$key.' = "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
+		if (trim($uiOptions[$value])) echo 'SizeMe.UI.options.'.$key.' = "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
 	}
 	
 	// SWATCHES
@@ -73,9 +73,10 @@ var sizeme_options = {
 	$swatch_attributes = $this->helper('sizeme_measurements')->getSwatchAttributes($product);
 
 	if ($swatch_attributes) {
-		echo 'sizeme_UI_options.sizeSelectionElement = "select#attribute'.reset($swatch_attributes).'";'.PHP_EOL;
-		echo 'sizeme_UI_options.sizeChangeClickElement = "a.swatch-link-'.reset($swatch_attributes).'";'.PHP_EOL;
-		echo 'sizeme_UI_options.firstRecommendation = false;'.PHP_EOL;
+		echo 'SizeMe.UI.options.sizeSelectionElement = "select#attribute'.reset($swatch_attributes).'";'.PHP_EOL;
+		echo 'SizeMe.UI.options.invokeElement = "a.swatch-link";'.PHP_EOL;
+		echo 'SizeMe.UI.options.invokeEvent = "click";'.PHP_EOL;
+		echo 'SizeMe.UI.options.firstRecommendation = false;'.PHP_EOL;
 	}
 	
 ?>	
