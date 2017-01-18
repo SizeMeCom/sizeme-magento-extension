@@ -61,6 +61,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_UI_OPTION_ADD_TO_CART_EVENT  	= 'sizeme_measurements/ui_options/add_to_cart_event';
     const XML_PATH_UI_OPTION_FIRST_RECOMMENDATION   = 'sizeme_measurements/ui_options/first_recommendation';
     const XML_PATH_UI_OPTION_LANG_OVERRIDE         	= 'sizeme_measurements/ui_options/lang_override';
+    const XML_PATH_UI_OPTION_CUSTOM_CSS         	= 'sizeme_measurements/ui_options/custom_css';
 
     /**
      * Service status on.
@@ -158,6 +159,9 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             'lang_override' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_LANG_OVERRIDE, $store
             ),
+            'custom_css' => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_CUSTOM_CSS, $store
+            ),			
         );
     }
 

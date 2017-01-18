@@ -164,6 +164,14 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </lang_override>
+                        <custom_css translate="label">
+                            <label>Custom Style Overrides</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </custom_css>						
                     </fields>
                 </ui_options>
             </groups>

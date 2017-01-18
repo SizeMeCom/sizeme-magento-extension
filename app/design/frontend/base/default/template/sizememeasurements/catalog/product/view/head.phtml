@@ -82,3 +82,8 @@ var sizeme_options = {
 ?>	
 //]]>
 </script>
+<?php
+// write possible custom css
+if (trim($uiOptions['custom_css'])) echo '<style type="text/css">'.$this->jsQuoteEscape(trim($uiOptions['custom_css'])).'</style>'.PHP_EOL;
+
+?>

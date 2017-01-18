@@ -112,6 +112,7 @@
                 <add_to_cart_event></add_to_cart_event>
                 <first_recommendation></first_recommendation>
                 <lang_override></lang_override>
+                <custom_css></custom_css>
             </ui_options>
         </sizeme_measurements>
     </default>
