@@ -57,6 +57,8 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_UI_OPTION_APPEND_CONTENT_TO 		= 'sizeme_measurements/ui_options/append_content_to';
     const XML_PATH_UI_OPTION_APPEND_SPLASH_TO   	= 'sizeme_measurements/ui_options/append_splash_to';
     const XML_PATH_UI_OPTION_SIZE_SELECTION_ELEMENT = 'sizeme_measurements/ui_options/size_selection_element';
+    const XML_PATH_UI_OPTION_INVOKE_ELEMENT			= 'sizeme_measurements/ui_options/invoke_element';
+    const XML_PATH_UI_OPTION_INVOKE_EVENT  			= 'sizeme_measurements/ui_options/invoke_event';	
     const XML_PATH_UI_OPTION_ADD_TO_CART_ELEMENT	= 'sizeme_measurements/ui_options/add_to_cart_element';
     const XML_PATH_UI_OPTION_ADD_TO_CART_EVENT  	= 'sizeme_measurements/ui_options/add_to_cart_event';
     const XML_PATH_UI_OPTION_FIRST_RECOMMENDATION   = 'sizeme_measurements/ui_options/first_recommendation';
@@ -146,6 +148,13 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             'size_selection_element' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_SIZE_SELECTION_ELEMENT, $store
             ),
+            'invoke_element' => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_INVOKE_ELEMENT, $store
+            ),
+            'invoke_event'  => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_INVOKE_EVENT,
+                $store
+            ),			
             'add_to_cart_element' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_ADD_TO_CART_ELEMENT, $store
             ),

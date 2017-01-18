@@ -132,10 +132,26 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </size_selection_element>
+                        <invoke_element translate="label">
+                            <label>Invoke Element</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </invoke_element>
+                        <invoke_event translate="label">
+                            <label>Invoke Event</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </invoke_event>						
                         <add_to_cart_element translate="label">
                             <label>Add To Cart Button Element</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>50</sort_order>
+                            <sort_order>70</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -143,7 +159,7 @@
                         <add_to_cart_event translate="label">
                             <label>Add To Cart Event</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>60</sort_order>
+                            <sort_order>80</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -151,7 +167,7 @@
                         <first_recommendation translate="label">
                             <label>Switch Selected Size to Recommended on Page Load</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>70</sort_order>
+                            <sort_order>90</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -159,7 +175,7 @@
                         <lang_override translate="label">
                             <label>Language Code Override</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>80</sort_order>
+                            <sort_order>100</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -167,7 +183,7 @@
                         <custom_css translate="label">
                             <label>Custom Style Overrides</label>
                             <frontend_type>textarea</frontend_type>
-                            <sort_order>90</sort_order>
+                            <sort_order>110</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>

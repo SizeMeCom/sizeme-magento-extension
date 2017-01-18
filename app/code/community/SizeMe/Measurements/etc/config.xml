@@ -108,6 +108,8 @@
                 <append_content_to></append_content_to>
                 <append_splash_to></append_splash_to>
                 <size_selection_element></size_selection_element>
+                <invoke_element></invoke_element>
+                <invoke_event></invoke_event>
                 <add_to_cart_element></add_to_cart_element>
                 <add_to_cart_event></add_to_cart_event>
                 <first_recommendation></first_recommendation>
