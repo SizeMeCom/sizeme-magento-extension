@@ -77,5 +77,17 @@ class SizeMe_Measurements_Block_Catalog_Product_View_Head extends Mage_Catalog_B
     {
         return $this->helper('sizeme_measurements')->getCustomSizeSelection() ? 'yes' : 'no';
     }
+	
+    /**
+     * Returns the version number of the extension.
+     *
+     * @return string the module version.
+     */
+    public function getModuleVersion()
+    {
+        // Path is hard-coded to be like in "etc/config.xml".
+        return (string)"MAG1-".Mage::getConfig()->getNode('modules/SizeMe_Measurements/version');
+    }
+
 
 }
