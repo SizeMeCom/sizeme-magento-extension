@@ -144,27 +144,26 @@ class Sizeme_Measurements_Model_Meta_Order extends Mage_Core_Model_Abstract
 	public function handleOrderToArray()
 	{
         $arr = array(
-            'order_number' => $this->getOrderNumber(),
-            'order_identifier' => $this->getOrderIdentifier(),
-            'order_status_code' => $this->getOrderStatus()->getCode(),
-            'order_status_label' => $this->getOrderStatus()->getLabel(),
+            'orderNumber' => $this->getOrderNumber(),
+            'orderIdentifier' => $this->getOrderIdentifier(),
+            'orderStatusCode' => $this->getOrderStatus()->getCode(),
+            'orderStatusLabel' => $this->getOrderStatus()->getLabel(),
             'buyer' => array(
-                'first_name' => $this->getBuyerInfo()->getFirstName(),
-                'last_name' => $this->getBuyerInfo()->getLastName(),
+                'firstName' => $this->getBuyerInfo()->getFirstName(),
+                'lastName' => $this->getBuyerInfo()->getLastName(),
                 'email' => $this->getBuyerInfo()->getEmail(),
             ),
-            'created_at' => $this->getCreatedDate(),
-            'purchased_items' => array(),
+            'createdAt' => $this->getCreatedDate(),
+            'purchasedItems' => array(),
         );
 
         foreach ($this->getPurchasedItems() as $item) {
-            $arr['purchased_items'][] = array(
-                'product_id' => $item->getProductId(),
+            $arr['purchasedItems'][] = array(
                 'SKU' => $item->getProductSKU(),
                 'quantity' => (int)$item->getQuantity(),
                 'name' => $item->getName(),
-                'unit_price' => $item->getUnitPrice(),
-                'price_currency_code' => strtoupper($item->getCurrencyCode()),
+                'unitPrice' => $item->getUnitPrice(),
+                'priceCurrencyCode' => strtoupper($item->getCurrencyCode()),
             );
         }
 		return $arr;
