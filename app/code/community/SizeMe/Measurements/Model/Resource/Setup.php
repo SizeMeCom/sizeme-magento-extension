@@ -92,7 +92,7 @@ class SizeMe_Measurements_Model_Resource_Setup extends Mage_Eav_Model_Entity_Set
                 'required' => false,
                 'user_defined' => 1,
                 'default' => 0,
-            ),			
+            ),
             'sm_chest' => array(
                 'group' => SizeMe_Measurements_Helper_Data::ATTRIBUTE_GROUP_NAME,
                 'label' => 'Chest',

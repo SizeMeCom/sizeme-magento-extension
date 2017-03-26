@@ -75,6 +75,24 @@
                     </sizeme_measurements_adminhtml_catalog_product_edit_prepare_form>
                 </observers>
             </adminhtml_catalog_product_edit_prepare_form>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <sizeme_measurements_checkout_cart_product_add_after>
+                        <type>singleton</type>
+                        <class>SizeMe_Measurements_Model_Observer</class>
+                        <method>sendAddToCart</method>
+                    </sizeme_measurements_checkout_cart_product_add_after>
+                </observers>
+            </checkout_cart_product_add_after>
+            <sales_order_save_commit_after>
+                <observers>
+                    <sizeme_measurements_sales_order_save_commit_after>
+                        <type>singleton</type>
+                        <class>SizeMe_Measurements_Model_Observer</class>
+                        <method>sendOrderConfirmation</method>
+                    </sizeme_measurements_sales_order_save_commit_after>
+                </observers>
+            </sales_order_save_commit_after>
         </events>
     </global>
     <frontend>

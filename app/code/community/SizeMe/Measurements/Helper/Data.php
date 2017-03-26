@@ -86,6 +86,16 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     const ATTRIBUTE_GROUP_NAME = 'SizeMe Item';
 
     /**
+     * Info related to SizeMe API requests
+     */
+	const API_CONTEXT_ADDRESS   = 'https://sizeme.com';
+	const API_SEND_ORDER_INFO   = '/api/sendOrderComplete';
+	const API_SEND_ADD_TO_CART  = '/api/sendAddToCart';
+	const COOKIE_SESSION   		= 'frontend';		// Magento specific
+	const COOKIE_ACTION   		= 'sm_action';
+
+
+    /**
      * Returns the service status for the store.
      *
      * @param Mage_Core_Model_Store $store optional store (will use current store if null).
@@ -372,4 +382,28 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $one ? array_pop($attributeCodes) : $attributeCodes;
     }
+
+    /**
+     * Returns the session cookie value
+     *
+     * @return string|null
+     */
+	public function getSessionCookie()
+	{
+		$cookie = Mage::getModel('core/cookie');
+		return $cookie->get(self::COOKIE_SESSION);
+	}
+
+    /**
+     * Returns the SizeMe action cookie value
+     *
+     * @return string|null
+     */
+	public function getActionCookie()
+	{
+		$cookie = Mage::getModel('core/cookie');
+		return $cookie->get(self::COOKIE_ACTION);
+	}
+
+
 }

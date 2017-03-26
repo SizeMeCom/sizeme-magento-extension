@@ -109,4 +109,62 @@ class SizeMe_Measurements_Model_Observer
 
         return $this;
     }
+
+    /**
+     * Sends a product info API request to SizeMe if a product is added to the cart.
+     *
+     * Event 'checkout_cart_product_add_after'.
+     *
+     * @param Varien_Event_Observer $observer the event observer.
+     *
+     * @return SizeMe_Measurements_Model_Observer
+     */
+    public function sendAddToCart(Varien_Event_Observer $observer)
+    {
+        if (Mage::helper('sizeme_measurements')->isModuleEnabled()) {
+            try {
+                /** @var Mage_Sales_Model_Quote_Item $mageItem */
+                $mageItem = $observer->getEvent()->getQuoteItem();
+
+                /** @var Sizeme_Measurements_Model_Meta_Quote_Item $item */
+                $item = Mage::getModel('sizeme_measurements/meta_quote_item');
+                $item->send($mageItem);
+
+            } catch (Exception $e) {
+                Mage::log("\n" . $e->__toString(), Zend_Log::ERR, 'sizeme_measurements.log');
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Sends an order confirmation API request to SizeMe if the order is completed.
+     *
+     * Event 'sales_order_save_commit_after'.
+     *
+     * @param Varien_Event_Observer $observer the event observer.
+     *
+     * @return SizeMe_Measurements_Model_Observer
+     */
+    public function sendOrderConfirmation(Varien_Event_Observer $observer)
+    {
+        if (Mage::helper('sizeme_measurements')->isModuleEnabled()) {
+            try {
+                /** @var Mage_Sales_Model_Order $mageOrder */
+                $mageOrder = $observer->getEvent()->getOrder();
+
+                /** @var SizeMe_Measurements_Model_Meta_Order $order */
+                $order = Mage::getModel('sizeme_measurements/meta_order');
+                $order->loadData($mageOrder);
+
+                $order->send();
+
+            } catch (Exception $e) {
+                Mage::log("\n" . $e->__toString(), Zend_Log::ERR, 'sizeme_measurements.log');
+            }
+        }
+
+        return $this;
+    }
 }
