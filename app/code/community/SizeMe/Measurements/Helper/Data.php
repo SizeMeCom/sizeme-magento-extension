@@ -283,7 +283,8 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
         );
 
         /** @var Mage_Catalog_Model_Product $variation */
-        $variation      = array_pop($this->getVariations($product));
+		$product_variations = $this->getVariations($product);
+        $variation      = array_pop($product_variations);
         $attributeCodes = $this->getSizeAttributeCodes($variation, false);
 
         $attributes = Mage::getModel('eav/entity_attribute')->getCollection()

@@ -61,6 +61,11 @@ class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
      * @var float The unit price of the item included in the order.
      */
     protected $_unitPrice;
+	
+    /**
+     * @var float The unit price of the item included in the order excluding all taxes.
+     */
+    protected $_unitPriceExclTax;	
 
     /**
      * @var string the 3-letter ISO code (ISO 4217) for the item currency.
@@ -88,6 +93,7 @@ class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
         $this->_quantity = (int)$item->getQtyOrdered();
         $this->_name = $this->fetchProductName($item);
         $this->_unitPrice = $item->getPriceInclTax();
+        $this->_finalPriceExclTax = $this->fetchFinalPriceExclTax($item);
         $this->_currencyCode = strtoupper($order->getOrderCurrencyCode());
     }
 
@@ -107,6 +113,7 @@ class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
         $this->_quantity = 1;
         $this->_name = (string)$name;
         $this->_unitPrice = $unitPrice;
+        $this->_unitPriceExclTax = 0;
         $this->_currencyCode = strtoupper($currencyCode);
     }
 
@@ -133,6 +140,21 @@ class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
     {
         $name = $item->getName();
         return $name;
+    }
+	
+    /**
+     * Finds the final price excluding tax for a given item (final means after possible discounts and stuff)
+     *
+     * @param Mage_Sales_Model_Order_Item $item the sales item model.
+     *
+     * @return float|int
+     */
+    protected function fetchFinalPriceExclTax(Mage_Sales_Model_Order_Item $item)
+    {
+		$_product = $item->getProduct();
+		$finalPriceExcludingTax = Mage::helper('tax')
+			->getPrice($_product, $_product->getFinalPrice(), false );
+        return $finalPriceExcludingTax;
     }
 
     /**
@@ -184,6 +206,16 @@ class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
     public function getUnitPrice()
     {
         return $this->_unitPrice;
+    }
+	
+    /**
+     * The unit price of the item included in the order excluding tax.
+     *
+     * @return float the unit price.
+     */
+    public function getFinalPriceExclTax()
+    {
+        return $this->_finalPriceExclTax;
     }
 
     /**

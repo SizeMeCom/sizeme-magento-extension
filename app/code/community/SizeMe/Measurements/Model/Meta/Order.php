@@ -162,7 +162,8 @@ class Sizeme_Measurements_Model_Meta_Order extends Mage_Core_Model_Abstract
                 'SKU' => $item->getProductSKU(),
                 'quantity' => (int)$item->getQuantity(),
                 'name' => $item->getName(),
-                'unitPrice' => $item->getUnitPrice(),
+                'unitPriceInclTax' => $item->getUnitPrice(),
+                'finalPriceExclTax' => $item->getFinalPriceExclTax(),
                 'priceCurrencyCode' => strtoupper($item->getCurrencyCode()),
             );
         }
@@ -178,7 +179,7 @@ class Sizeme_Measurements_Model_Meta_Order extends Mage_Core_Model_Abstract
     {
 		$data_string = json_encode($this->handleOrderToArray());
 
-		$ch = curl_init(SizeMe_Measurements_Helper_Data::API_CONTEXT_ADDRESS . SizeMe_Measurements_Helper_Data::API_SEND_ORDER);
+		$ch = curl_init(SizeMe_Measurements_Helper_Data::API_CONTEXT_ADDRESS . SizeMe_Measurements_Helper_Data::API_SEND_ORDER_INFO);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
