@@ -26,15 +26,15 @@
  */
 
 /**
- * SizeMe catalog product view head block.
+ * SizeMe catalog product view block to insert SizeMe external references (js and css).
  *
- * Adds the needed CSS && JS to the page <head> element.
+ * Adds the needed CSS && JS to the page.
  *
  * @category SizeMe
  * @package  SizeMe_Measurements
  * @author   SizeMe Ltd <plugins@sizeme.com>
  */
-class SizeMe_Measurements_Block_Catalog_Product_View_Head extends Mage_Catalog_Block_Product_Abstract
+class SizeMe_Measurements_Block_Catalog_Product_View_Externals extends Mage_Catalog_Block_Product_Abstract
 {
 
     /**

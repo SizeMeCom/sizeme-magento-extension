@@ -51,15 +51,23 @@ $helper = Mage::helper('sizeme_measurements');
 			$recommendation = (int)$product->getSmiItemFitRecommendation();
 		?>
 			name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
-			item: new SizeMe.Item("<?php echo $type; ?>", <?php echo $layer; ?>, <?php echo $thickness; ?>, <?php echo $stretch; ?>, <?php echo $recommendation; ?>)
-		<?php foreach ($this->getVariations($product) as $variation): ?>
-			.addSize("<?php echo (int)$helper->getSizeAttributeValue($variation); ?>", new SizeMe.Map()
-			<?php foreach ($this->getVariationSizeMeAttributes($variation) as $name => $value): ?>
-				.addItem("<?php echo $this->jsQuoteEscape($name); ?>", <?php echo(int)$value; ?>)
-			<?php endforeach; ?>
-			)
-		<?php endforeach; ?>
-	<?php else: ?>	
+			item: {
+				itemType: "<?php echo $type; ?>",
+				itemLayer: <?php echo $layer; ?>,
+				itemThickness: <?php echo $thickness; ?>,
+				itemStretch:	<?php echo $stretch; ?>,
+				fitRecommendation: <?php echo $recommendation; ?>,
+				measurements: {
+					<?php foreach ($this->getVariations($product) as $variation): ?>
+						"<?php echo (int)$helper->getSizeAttributeValue($variation); ?>": {
+							<?php foreach ($this->getVariationSizeMeAttributes($variation) as $name => $value): ?>
+								"<?php echo $this->jsQuoteEscape($name); ?>": <?php echo(int)$value; ?>,
+							<?php endforeach; ?>
+						},
+					<?php endforeach; ?>
+				}
+			}
+	<?php else: ?>
 		<?php
 		// else write version to use SKU's to find this one in the universal SizeMe Product Database
 		?>

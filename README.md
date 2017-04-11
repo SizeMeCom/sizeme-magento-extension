@@ -158,7 +158,7 @@ Usually SizeMe will try to sniff the store language from the html tags lang para
 * Default: sniffed from code
 
 #### Custom Style Overrides
-This text field can be used to write some custom CSS to the head of the page.  This is one opportunity to make changes to the SizeMe user interface, you can change the colors and stuff like that.
+This text field can be used to write some custom CSS to the page.  This is one opportunity to make changes to the SizeMe user interface, you can change the colors and stuff like that.
 * Type: CSS code
 * Default: defined in sizeme-magento.css
 

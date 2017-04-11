@@ -28,28 +28,31 @@
 
 <?php
 /**
- * @var $this SizeMe_Measurements_Block_Head
+ * @var $this SizeMe_Measurements_Block_Catalog_Product_View_Externals
  */
 
 ?>
-
-<!--
-<link rel="stylesheet" type="text/css" href="//sizeme.com/2.3/css/sizeme-magento.min.css" />
-<script type="text/javascript" src="//sizeme.com/2.3/js/sizeme-magento.min.js"></script>
--->
-<link rel="stylesheet" type="text/css" href="//test.sizeme.com/2.3/css/sizeme-magento.css" />
-<script type="text/javascript" src="//test.sizeme.com/2.3/js/sizeme-magento.js"></script>
-
 
 <script type="text/javascript">
 //<![CDATA[
 var sizeme_options = {
 	service_status: "<?php echo $this->jsQuoteEscape($this->getServiceStatus()); ?>",
-	buttonize: "<?php echo $this->jsQuoteEscape($this->getCustomSizeSelection()); ?>"
+	buttonize: "<?php echo $this->jsQuoteEscape($this->getCustomSizeSelection()); ?>",
+	pluginVersion: "<?php echo $this->getModuleVersion(); ?>",
+	shopType: "magento",
+	contextAddress: "https://sizeme.greitco.com",
+	gaTrackingId: "UA-40735596-2"
 };
+//]]>
+</script>
 
-SizeMe.pluginVersion = "<?php echo $this->getModuleVersion(); ?>";
-	
+<link rel="stylesheet" type="text/css" href="//test.sizeme.com/3.0/sizeme-styles.css" />
+<script type="text/javascript" src="//test.sizeme.com/3.0/sizeme-manifest.js"></script>
+<script type="text/javascript" src="//test.sizeme.com/3.0/sizeme-vendor.js"></script>
+<script type="text/javascript" src="//test.sizeme.com/3.0/sizeme.js"></script>
+
+<script type="text/javascript">
+//<![CDATA[
 <?php
 
 	// UI OPTIONS
@@ -89,10 +92,10 @@ SizeMe.pluginVersion = "<?php echo $this->getModuleVersion(); ?>";
 		echo 'SizeMe.UI.options.invokeEvent = "click";'.PHP_EOL;
 		echo 'SizeMe.UI.options.firstRecommendation = false;'.PHP_EOL;
 	}
-	
 ?>	
 //]]>
 </script>
+
 <?php
 // write possible custom css
 if (trim($uiOptions['custom_css'])) echo '<style type="text/css">'.$this->jsQuoteEscape(trim($uiOptions['custom_css'])).'</style>'.PHP_EOL;
