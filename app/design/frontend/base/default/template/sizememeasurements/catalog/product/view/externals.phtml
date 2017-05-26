@@ -41,21 +41,13 @@ var sizeme_options = {
 	pluginVersion: "<?php echo $this->getModuleVersion(); ?>",
 	shopType: "magento",
 	contextAddress: "https://sizeme.greitco.com",
-	gaTrackingId: "UA-40735596-2"
+	gaTrackingId: "UA-40735596-2",
+	uiOptions: {}
 };
-//]]>
-</script>
 
-<link rel="stylesheet" type="text/css" href="//test.sizeme.com/3.0/sizeme-styles.css" />
-<script type="text/javascript" src="//test.sizeme.com/3.0/sizeme-manifest.js"></script>
-<script type="text/javascript" src="//test.sizeme.com/3.0/sizeme-vendor.js"></script>
-<script type="text/javascript" src="//test.sizeme.com/3.0/sizeme.js"></script>
-
-<script type="text/javascript">
-//<![CDATA[
 <?php
 
-	// UI OPTIONS
+	// POSSIBLE EXTRA UI OPTIONS
 	$uiOptions = $this->helper('sizeme_measurements')->getUiOptionsArray();
 	
 	$allSizeMeOptions = array(
@@ -71,7 +63,7 @@ var sizeme_options = {
 						
 	foreach($allSizeMeOptions as $key => $value) {
 		// write all non-empty fields to override platform specific default values defined in standard js
-		if (trim($uiOptions[$value])) echo 'SizeMe.UI.options.'.$key.' = "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
+		if (trim($uiOptions[$value])) echo 'sizeme_options.uiOptions.'.$key.' = "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
 	}
 
 	// possible first recommendation value override
@@ -79,7 +71,7 @@ var sizeme_options = {
 	if (trim($uiOptions[$value])) {
 		$write_value = trim(strtolower($uiOptions[$value]));
 		$allowed_values = array('true', '1', 'false', '0');
-		if (in_array($write_value, $allowed_values)) echo 'SizeMe.UI.options.firstRecommendation = '.$write_value.';'.PHP_EOL;	
+		if (in_array($write_value, $allowed_values)) echo 'sizeme_options.uiOptions.firstRecommendation = '.$write_value.';'.PHP_EOL;	
 	}
 	
 	// SWATCHES
@@ -87,14 +79,18 @@ var sizeme_options = {
 	$swatch_attributes = $this->helper('sizeme_measurements')->getSwatchAttributes($product);
 
 	if ($swatch_attributes) {
-		echo 'SizeMe.UI.options.sizeSelectionElement = "select#attribute'.reset($swatch_attributes).'";'.PHP_EOL;
-		echo 'SizeMe.UI.options.invokeElement = "a.swatch-link";'.PHP_EOL;
-		echo 'SizeMe.UI.options.invokeEvent = "click";'.PHP_EOL;
-		echo 'SizeMe.UI.options.firstRecommendation = false;'.PHP_EOL;
+		echo 'sizeme_options.uiOptions.sizeSelectorType = "swatches";'.PHP_EOL;
+		echo 'sizeme_options.uiOptions.invokeElement = "#configurable_swatch_size";'.PHP_EOL;
+		echo 'sizeme_options.uiOptions.firstRecommendation = false;'.PHP_EOL;
 	}
 ?>	
 //]]>
 </script>
+
+<link rel="stylesheet" type="text/css" href="//test.sizeme.com/3.0/sizeme-styles.css" />
+<script type="text/javascript" src="//test.sizeme.com/3.0/sizeme-manifest.js"></script>
+<script type="text/javascript" src="//test.sizeme.com/3.0/sizeme-vendor.js"></script>
+<script type="text/javascript" src="//test.sizeme.com/3.0/sizeme.js"></script>
 
 <?php
 // write possible custom css
