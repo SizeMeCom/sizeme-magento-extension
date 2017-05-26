@@ -1,12 +1,12 @@
 # SizeMe for Magento
 
-SizeMe is a service designed to help you provide better product information for your customers.  
-With SizeMe you can enter the actual measurements of your product and show an actual Size Guide.  
+SizeMe is a service designed to help you provide better product information for your customers.
+With SizeMe you can enter the actual measurements of your product and show an actual Size Guide.
 Or you might already find the measurements of the product you are selling in our ever-growing
-hosted Product Database.  
+hosted Product Database.
 
 Your users can enter their own physical measurements and get personal information
-on how the viewed item will fit them.  
+on how the viewed item will fit them.
 
 [https://www.sizeme.com](https://www.sizeme.com/)
 
@@ -21,11 +21,11 @@ SizeMe needs at least one measurement per item.  In some cases (like shoes) only
 We use the product SKU fields to match the products in the store to your measurement data, so please send the SKU data along with the measurement data.
 
 2.  Using the Store Database
-The installation creates a new attribute set called "SizeMe Item".  This set includes all the product fields needed to store the product information in your store and show it on the product page.  The attribute set can be found at its own tab in the Product Information page.  
+The installation creates a new attribute set called "SizeMe Item".  This set includes all the product fields needed to store the product information in your store and show it on the product page.  The attribute set can be found at its own tab in the Product Information page.
 
-The required product information is a little different on _configurable_ and _simple_ products.  
+The required product information is a little different on _configurable_ and _simple_ products.
 
-### Configurable product 
+### Configurable product
 The configurable product should hold the common SizeMe information for the whole product.  These fields are:
 
 #### Item Type
@@ -38,8 +38,8 @@ This code is used to tell SizeMe what the type of the product is.  Please see [t
   * Shoes: 3.0.0.0.0.0.0
 
 #### Item Layer
-This code tells on what layer is the product to be worn on. 
-* 0 (zero) is directly on skin, 
+This code tells on what layer is the product to be worn on.
+* 0 (zero) is directly on skin,
 * 1 is with one layer underneath (like a hoodie, trousers or shoes)
 * 2 is with two layers underneath (like coats or such)
 * Type: number (integer)
@@ -49,13 +49,13 @@ Enter the average item thickness here in millimeters [mm].  The item measurement
 * Type: number (integer)
 
 #### Item Stretch
-This value tells SizeMe how much this item can stretch.  The value is stretch percentage value as an integer, so if an item stretches 20 % when stretched, then this value is marked as 20.  The way we measure the stretch value is by simply stretching the item by hand using a sensible amount of force and see how much the item stretches.  We usually grab the item over a ruler with hands 10 cm apart, and then stretch the item and read the stretched value from the ruler.  If your hands are 14 cm apart after stretching, then the stretch value in the Item Stretch field would be 40 (as in +40 % you know).  
+This value tells SizeMe how much this item can stretch.  The value is stretch percentage value as an integer, so if an item stretches 20 % when stretched, then this value is marked as 20.  The way we measure the stretch value is by simply stretching the item by hand using a sensible amount of force and see how much the item stretches.  We usually grab the item over a ruler with hands 10 cm apart, and then stretch the item and read the stretched value from the ruler.  If your hands are 14 cm apart after stretching, then the stretch value in the Item Stretch field would be 40 (as in +40 % you know).
 * Type: number (integer)
 
-If no product information for the product is available, the SizeMe integration doesn't really do much.  
+If no product information for the product is available, the SizeMe integration doesn't really do much.
 
-### Simple product 
-The simple products, which are the single sizes (or size and color combinations) of the item, hold the physical measurements of each size.  All measurements are measured __flat__ across the outside of the unstretched item unless otherwise noted.  All measurements are stored in millimeters [mm].  
+### Simple product
+The simple products, which are the single sizes (or size and color combinations) of the item, hold the physical measurements of each size.  All measurements are measured __flat__ across the outside of the unstretched item unless otherwise noted.  All measurements are stored in millimeters [mm].
 
 #### Measurements fields
 * Chest
@@ -74,93 +74,76 @@ The simple products, which are the single sizes (or size and color combinations)
 * Thigh width
 * Knee width
 * Calf width
-* Pant sleeve width 
+* Pant sleeve width
 * Shoe inside length (mesaured on the inside)
 * Shoe inside width (not supported yet)
 * Hat width
 * Hood height
 
-## Configuration: 
+## Configuration:
 
 ### General:
 
 #### Service status
-There are three options for this value: On, Test and Off.  
+There are three options for this value: On, Test and Off.
 * "On" means that the service is live normally.  A SizeMe splash welcome is included for non-SizeMe users and SizeMe users are recognized automatically.
-* "Test" means that a special test version of the service is active.  Existing SizeMe users 
-* "Off" means that no SizeMe functionality is included in your store.  
+* "Test" means that a special test version of the service is active.  Debug info is written to the console.  This shouldn't be used in live production sites.
+* "Off" means that no SizeMe functionality is included in your store.
 Default value: Off
 
 #### Change Size Selection to Buttons
 This is a bit of a bonus feature.  If this value is set to "Yes" and the service is "On" or "Test", the plugin will try to convert your size selection drop-down to a set of clickable buttons.  This currently doesn't work with products with multiple selections (such as color _and_ size).
 Default value: No
 
-### Template Settings: 
+### Template Settings:
 
 #### Replace Configurable Product Option Template
 By default the plugin adds a certain class (".sizeme-magento-size-selector") to the correct size selector on the product page.  Many themes like to use their own custom file to write the configurable product page, and in those cases you might want to change this option to "No".  If this is set to "No", you just have to change the SizeMe Size Selection Element (in UI Options Overrides) to point to the correct size selection element.
 Default value: Yes
 
-### Attribute Settings: 
+### Attribute Settings:
 
 #### Product Size Attributes
 Use this multiselect to select the size attribute, so that SizeMe knows which one to follow.  You can select multiple values (by pressing Ctrl while selecting) if you have multiple size attributes.  This option is only active if the "Replace Configurable Product Option Template" is set to "Yes".
 
 ### UI Options Overrides:
 
-The plugin is pre-configured to work in default Magento themes.  However, if you have a custom theme installed in your store, you might have to override some of the default values with which SizeMe interacts with the product page.  Only include the values you want to override, otherwise default values will be used.
-  
-SizeMe uses the jQuery library to interact with the product page.  
+The plugin is pre-configured to work in default Magento themes.  However, if you have a custom theme installed in your store, you might have to _override_ some of the default values with which SizeMe interacts with the product page.  Only include the values you want to override, otherwise default values will be used.
 
-#### Append SizeMe Content To This Element 
+#### Append SizeMe Content To This Element
 This selector is used to identify where SizeMe appends the SizeMe content (Sizing bar, Size Guide and Detailed View buttons)
-* Type: jQuery selector
+* Type: DOM querySelector selector
 * Default: .product-options
-
-#### Append SizeMe Splash To This Element
-This selector is used to identify where SizeMe appends the SizeMe content (Sizing bar, Size Guide and Detailed View buttons)
-* Type: jQuery selector
-* Default: .product-options
-
-#### SizeMe Size Selection Element
-This selector is used to identify where the size selector element to SizeMe.  The default value uses the class `sizeme-magento-size-selector` which is written by the plugin according to the size attribute selection in SizeMe -> Attribute Settings -> Product Size Attributes
-* Type: jQuery selector
-* Default: select.sizeme-magento-size-selector
 
 #### Invoke Element
-This selector is used to identify which element(s) to listen to for changes that might affect the size selector and thus, SizeMe.  This element could basically be the same as the size selector, but in product pages with multiple selections such as size __and__ color, you have to listen to all the select elements.  
-* Type: jQuery selector
+This selector is used to identify which element(s) to listen to for changes that might affect the size selector and thus, SizeMe.  This element could basically be the same as the size selector, but in product pages with multiple selections such as size __and__ color, you have to listen to all the select elements.
+* Type: DOM querySelector selector
 * Default: select.super-attribute-select
 
-#### Invoke Event
-This value is used to identify which event to listen to for changes as outlined in the Invoke Element definition.
-* Type: jQuery event
-* Default: change
-
 #### Add To Cart Button Element
-This selector is used to identify the correct Add To Cart element.  The default value uses two different values due to some legacy thing.
-* Type: jQuery selector
-* Default: form#product_addtocart_form a.liftup-button, form#product_addtocart_form button
+This selector is used to identify the correct Add To Cart element.
+* Type: DOM querySelector selector
+* Default: button.btn-cart
 
-#### Add To Cart Event
-This value is used to identify the correct Add To Cart event.
-* Type: jQuery event
-* Default: click
-
-#### Switch Selected Size to Recommended on Page Load
-SizeMe will automatically try to select the best fitting size on product page load.  Sometimes, this might be impossible due to the dynamic nature of the selectors or something.  
-* Type: boolean (true/false)
-* Default: true
+#### Size Selector Type
+SizeMe has to understand the nature of the size selector on the page.  Supported values: "default" for a normal select element, "swatches" for Magento RWD theme type buttons
+* Type: string
+* Default: default
 
 #### Language Code Override
 Usually SizeMe will try to sniff the store language from the html tags lang parameter.  This value can be used to override this sniffing.  SizeMe uses ISO 639-1 language codes and will default to English if the given language is not supported.
 * Type: ISO 639-1 language code
 * Default: sniffed from code
 
+#### Skin String
+This space-separated list is like a extra class definition for SizeMe content.  Use this to choose from preset SizeMe skinning options.
+* Type: string
+* Default: empty
+
 #### Custom Style Overrides
-This text field can be used to write some custom CSS to the page.  This is one opportunity to make changes to the SizeMe user interface, you can change the colors and stuff like that.
+This text field can be used to write some custom CSS to the page.  This is another opportunity to make changes to the SizeMe user interface, you can change the colors and stuff like that.
 * Type: CSS code
-* Default: defined in sizeme-magento.css
+* Default: defined in sizeme-styles.css
 
 
 
