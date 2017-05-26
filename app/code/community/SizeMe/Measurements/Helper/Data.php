@@ -169,7 +169,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             ),
         );
     }
-
+	
     /**
      * Checks if the extension is active, i.e. if enabled and service status is
      * something else than "off".
