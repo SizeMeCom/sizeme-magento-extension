@@ -40,8 +40,6 @@ var sizeme_options = {
 	buttonize: "<?php echo $this->jsQuoteEscape($this->getCustomSizeSelection()); ?>",
 	pluginVersion: "<?php echo $this->getModuleVersion(); ?>",
 	shopType: "magento",
-	contextAddress: "https://sizeme.greitco.com",
-	gaTrackingId: "UA-40735596-2",
 	uiOptions: {}
 };
 
@@ -72,14 +70,25 @@ var sizeme_options = {
 		echo 'sizeme_options.uiOptions.sizeSelectorType = "swatches";'.PHP_EOL;
 		echo 'sizeme_options.uiOptions.invokeElement = "#configurable_swatch_size";'.PHP_EOL;
 	}
+	
+	$sizeme_address = "sizeme.com";
+	
+	// TEST MODE
+	if ($this->getServiceStatus() === self::SERVICE_STATUS_TEST) {
+		echo 'sizeme_options.contextAddress: "https://sizeme.greitco.com";'.PHP_EOL;
+		echo 'sizeme_options.gaTrackingId: "UA-40735596-2";'.PHP_EOL;
+		echo 'sizeme_options.debugState: "true";'.PHP_EOL;
+		$sizeme_address = "test.sizeme.com";
+	}
+	
 ?>	
 //]]>
 </script>
 
-<link rel="stylesheet" type="text/css" href="//test.sizeme.com/3.0/sizeme-styles.css" />
-<script type="text/javascript" src="//test.sizeme.com/3.0/sizeme-manifest.js"></script>
-<script type="text/javascript" src="//test.sizeme.com/3.0/sizeme-vendor.js"></script>
-<script type="text/javascript" src="//test.sizeme.com/3.0/sizeme.js"></script>
+<link rel="stylesheet" type="text/css" href="//<?php echo $sizeme_address ?>/3.0/sizeme-styles.css" />
+<script type="text/javascript" src="//<?php echo $sizeme_address ?>/3.0/sizeme-manifest.js"></script>
+<script type="text/javascript" src="//<?php echo $sizeme_address ?>/3.0/sizeme-vendor.js"></script>
+<script type="text/javascript" src="//<?php echo $sizeme_address ?>/3.0/sizeme.js"></script>
 
 <?php
 // write possible custom css
