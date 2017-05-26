@@ -183,6 +183,18 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             && ($this->getSizeAttributeIds() !== array())
         );
     }
+	
+	
+    /**
+     * Returns if service status is "test".
+     *
+     * @return bool true if test, false otherwise.
+     */
+    public function isServiceTest()
+    {
+        return ( $this->getServiceStatus() === self::SERVICE_STATUS_TEST);
+    }	
+	
 
     /**
      * Checks if the given attribute is a "size" attribute.

@@ -47,7 +47,7 @@ var sizeme_options = {
 
 	// POSSIBLE EXTRA UI OPTIONS
 	$uiOptions = $this->helper('sizeme_measurements')->getUiOptionsArray();
-	
+
 	$allSizeMeOptions = array(
 							'appendContentTo' => 'append_content_to',
 							'invokeElement' => 'invoke_element',
@@ -56,32 +56,32 @@ var sizeme_options = {
 							'skinString' => 'skin_string',
 							'lang' => 'lang_override',
 						);
-						
+
 	foreach($allSizeMeOptions as $key => $value) {
 		// write all non-empty fields to override platform specific default values defined in standard js
 		if (trim($uiOptions[$value])) echo 'sizeme_options.uiOptions.'.$key.' = "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
 	}
 
 	// SWATCHES
-	$product = $this->getProduct();	
+	$product = $this->getProduct();
 	$swatch_attributes = $this->helper('sizeme_measurements')->getSwatchAttributes($product);
 
 	if ($swatch_attributes) {
 		echo 'sizeme_options.uiOptions.sizeSelectorType = "swatches";'.PHP_EOL;
 		echo 'sizeme_options.uiOptions.invokeElement = "#configurable_swatch_size";'.PHP_EOL;
 	}
-	
+
 	$sizeme_address = "sizeme.com";
-	
+
 	// TEST MODE
-	if ($this->getServiceStatus() === self::SERVICE_STATUS_TEST) {
-		echo 'sizeme_options.contextAddress: "https://sizeme.greitco.com";'.PHP_EOL;
-		echo 'sizeme_options.gaTrackingId: "UA-40735596-2";'.PHP_EOL;
-		echo 'sizeme_options.debugState: "true";'.PHP_EOL;
-		$sizeme_address = "test.sizeme.com";
+	if ( $this->helper('sizeme_measurements')->isServiceTest() ) {
+		// echo 'sizeme_options.contextAddress = "https://sizeme.greitco.com";'.PHP_EOL;
+		// $sizeme_address = "test.sizeme.com";
+		echo 'sizeme_options.gaTrackingId = "UA-40735596-2";'.PHP_EOL;
+		echo 'sizeme_options.debugState = "true";'.PHP_EOL;
 	}
-	
-?>	
+
+?>
 //]]>
 </script>
 
@@ -93,5 +93,3 @@ var sizeme_options = {
 <?php
 // write possible custom css
 if (trim($uiOptions['custom_css'])) echo '<style type="text/css">'.$this->jsQuoteEscape(trim($uiOptions['custom_css'])).'</style>'.PHP_EOL;
-
-?>
