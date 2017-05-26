@@ -55,15 +55,13 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
      * UI option store config save paths.
      */
     const XML_PATH_UI_OPTION_APPEND_CONTENT_TO 		= 'sizeme_measurements/ui_options/append_content_to';
-    const XML_PATH_UI_OPTION_APPEND_SPLASH_TO   	= 'sizeme_measurements/ui_options/append_splash_to';
-    const XML_PATH_UI_OPTION_SIZE_SELECTION_ELEMENT = 'sizeme_measurements/ui_options/size_selection_element';
     const XML_PATH_UI_OPTION_INVOKE_ELEMENT			= 'sizeme_measurements/ui_options/invoke_element';
-    const XML_PATH_UI_OPTION_INVOKE_EVENT  			= 'sizeme_measurements/ui_options/invoke_event';
     const XML_PATH_UI_OPTION_ADD_TO_CART_ELEMENT	= 'sizeme_measurements/ui_options/add_to_cart_element';
-    const XML_PATH_UI_OPTION_ADD_TO_CART_EVENT  	= 'sizeme_measurements/ui_options/add_to_cart_event';
-    const XML_PATH_UI_OPTION_FIRST_RECOMMENDATION   = 'sizeme_measurements/ui_options/first_recommendation';
+    const XML_PATH_UI_OPTION_SIZE_SELECTOR_TYPE		= 'sizeme_measurements/ui_options/size_selector_type';
     const XML_PATH_UI_OPTION_LANG_OVERRIDE         	= 'sizeme_measurements/ui_options/lang_override';
+    const XML_PATH_UI_OPTION_SKIN_STRING         	= 'sizeme_measurements/ui_options/skin_string';
     const XML_PATH_UI_OPTION_CUSTOM_CSS         	= 'sizeme_measurements/ui_options/custom_css';
+
 
     /**
      * Service status on.
@@ -149,33 +147,23 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return array(
             'append_content_to' => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_APPEND_CONTENT_TO,
-                $store
-            ),
-            'append_splash_to' => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_APPEND_SPLASH_TO, $store
-            ),
-            'size_selection_element' => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_SIZE_SELECTION_ELEMENT, $store
+                self::XML_PATH_UI_OPTION_APPEND_CONTENT_TO, $store
             ),
             'invoke_element' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_INVOKE_ELEMENT, $store
             ),
-            'invoke_event'  => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_INVOKE_EVENT, $store
-            ),
             'add_to_cart_element' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_ADD_TO_CART_ELEMENT, $store
             ),
-            'add_to_cart_event'  => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_ADD_TO_CART_EVENT, $store
-            ),
-            'first_recommendation' => Mage::getStoreConfig(
-                self::XML_PATH_UI_OPTION_FIRST_RECOMMENDATION, $store
+            'size_selector_type'  => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_SIZE_SELECTOR_TYPE, $store
             ),
             'lang_override' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_LANG_OVERRIDE, $store
             ),
+            'skin_string' => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_SKIN_STRING, $store
+            ),			
             'custom_css' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_CUSTOM_CSS, $store
             ),

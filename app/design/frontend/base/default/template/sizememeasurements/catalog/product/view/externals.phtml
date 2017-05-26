@@ -52,12 +52,10 @@ var sizeme_options = {
 	
 	$allSizeMeOptions = array(
 							'appendContentTo' => 'append_content_to',
-							'appendSplashTo' => 'append_splash_to',
-							'sizeSelectionElement' => 'size_selection_element',
 							'invokeElement' => 'invoke_element',
-							'invokeEvent' => 'invoke_event',							
 							'addToCartElement' => 'add_to_cart_element',
-							'addToCartEvent' => 'add_to_cart_event',
+							'sizeSelectorType' => 'size_selector_type',
+							'skinString' => 'skin_string',
 							'lang' => 'lang_override',
 						);
 						
@@ -66,14 +64,6 @@ var sizeme_options = {
 		if (trim($uiOptions[$value])) echo 'sizeme_options.uiOptions.'.$key.' = "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
 	}
 
-	// possible first recommendation value override
-	$value = 'first_recommendation';
-	if (trim($uiOptions[$value])) {
-		$write_value = trim(strtolower($uiOptions[$value]));
-		$allowed_values = array('true', '1', 'false', '0');
-		if (in_array($write_value, $allowed_values)) echo 'sizeme_options.uiOptions.firstRecommendation = '.$write_value.';'.PHP_EOL;	
-	}
-	
 	// SWATCHES
 	$product = $this->getProduct();	
 	$swatch_attributes = $this->helper('sizeme_measurements')->getSwatchAttributes($product);
@@ -81,7 +71,6 @@ var sizeme_options = {
 	if ($swatch_attributes) {
 		echo 'sizeme_options.uiOptions.sizeSelectorType = "swatches";'.PHP_EOL;
 		echo 'sizeme_options.uiOptions.invokeElement = "#configurable_swatch_size";'.PHP_EOL;
-		echo 'sizeme_options.uiOptions.firstRecommendation = false;'.PHP_EOL;
 	}
 ?>	
 //]]>

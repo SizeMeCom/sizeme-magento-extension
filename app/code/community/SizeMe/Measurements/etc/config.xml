@@ -124,14 +124,11 @@
             </template_settings>
             <ui_options>
                 <append_content_to></append_content_to>
-                <append_splash_to></append_splash_to>
-                <size_selection_element></size_selection_element>
                 <invoke_element></invoke_element>
-                <invoke_event></invoke_event>
                 <add_to_cart_element></add_to_cart_element>
-                <add_to_cart_event></add_to_cart_event>
-                <first_recommendation></first_recommendation>
+                <size_selector_type></size_selector_type>
                 <lang_override></lang_override>
+                <skin_string></skin_string>
                 <custom_css></custom_css>
             </ui_options>
         </sizeme_measurements>
