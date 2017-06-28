@@ -16,7 +16,7 @@ on how the viewed item will fit them.
 SizeMe needs certain product information to function in the first place.  Basically we use a product item type definition and some measurements from each size of the product.  SizeMe offers two different ways of including this information; you can send your item measurement data to us and use the SizeMe Product Database _or_ you can use the store's own database to store the necessary measurements.
 
 1.  Using the SizeMe Product Database
-SizeMe needs at least one measurement per item.  In some cases (like shoes) only one measurement is actually needed to give a good estimate of personal fit.  We have a hosted Product Database and we would be more than happy to host your product measurements for you.  Just send the product measurement data in any format to us, and we'll handle the data and your item measurement data will be made available.  There is also a good possibility that we also have measurements from the products you are selling (we already have most a lot shoe measurements for example), so you might want to contact us before submitting any product data.
+SizeMe needs at least one measurement per item.  In some cases (like shoes) only one measurement is actually needed to give a good estimate of personal fit.  We have a hosted Product Database and we would be more than happy to host your product measurements for you.  Just send the product measurement data in any format to us, and we'll handle the data and your item measurement data will be made available.  There is also a good possibility that we also have measurements from the products you are selling (we already have a lot shoe measurements for example), so you might want to contact us before submitting any product data.
 
 We use the product SKU fields to match the products in the store to your measurement data, so please send the SKU data along with the measurement data.
 
@@ -86,7 +86,7 @@ The simple products, which are the single sizes (or size and color combinations)
 
 #### Service status
 There are three options for this value: On, Test and Off.
-* "On" means that the service is live normally.  A SizeMe splash welcome is included for non-SizeMe users and SizeMe users are recognized automatically.
+* "On" means that the service is live normally.  
 * "Test" means that a special test version of the service is active.  Debug info is written to the console.  This shouldn't be used in live production sites.
 * "Off" means that no SizeMe functionality is included in your store.
 Default value: Off
