@@ -334,16 +334,31 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             $skipSaleableCheck = $helper->getSkipSaleableCheck();
         }
 
+	// Try to find the correct allowed configurable attribute first
+	$sizeAttributeCode = '';	
+
+	// Read the allowed attributes
+	$allowedSizeAttributeIds = $this->getSizeAttributeIds();
+
+	// Read the configurable attributes from the parent product
+	$attributes = $product->getTypeInstance(true)->getConfigurableAttributes($product);
+
+	foreach($attributes as $attribute) {
+		if ( in_array($attribute['attribute_id'], $allowedSizeAttributeIds) ) {
+			$sizeAttributeCode = $attribute->getProductAttribute()->getAttributeCode();
+		}
+	}
+	if (!$sizeAttributeCode) return array();
+
         /** @var Mage_Catalog_Model_Product[] $collection */
         $collection = Mage::getModel('catalog/product_type_configurable')
             ->getUsedProductCollection($product)
             ->addAttributeToSelect('*');
+
         foreach ($collection as $item) {
-            $sizeAttributeValue = $this->getSizeAttributeValue($item);
-            if ($item->isSaleable()
-                || $skipSaleableCheck
-                && !isset($variations[$sizeAttributeValue])
-            ) {
+            $sizeAttributeValue = $item->getData($sizeAttributeCode);
+
+            if ( ($item->isSaleable() || $skipSaleableCheck) && !isset($variations[$sizeAttributeValue] ) ) {
                 $variations[$sizeAttributeValue] = $item;
             }
         }
@@ -375,12 +390,13 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     {
         $attributeCodes   = array();
         $sizeAttributeIds = $this->getSizeAttributeIds();
+
         foreach ($product->getAttributes() as $attribute) {
             if (in_array($attribute->getAttributeId(), $sizeAttributeIds)) {
                 $attributeCodes[] = $attribute->getAttributeCode();
             }
         }
-
+	
         return $one ? array_pop($attributeCodes) : $attributeCodes;
     }
 

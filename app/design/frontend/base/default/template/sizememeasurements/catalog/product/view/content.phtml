@@ -35,6 +35,7 @@ $product = $this->getProduct();
 $type = trim((string)$product->getSmiItemType());
 /** @var SizeMe_Measurements_Helper_Data $helper */
 $helper = Mage::helper('sizeme_measurements');
+
 ?>
 
 <script type="text/javascript">
@@ -58,8 +59,8 @@ $helper = Mage::helper('sizeme_measurements');
 				itemStretch:	<?php echo $stretch; ?>,
 				fitRecommendation: <?php echo $recommendation; ?>,
 				measurements: {
-					<?php foreach ($this->getVariations($product) as $variation): ?>
-						"<?php echo (int)$helper->getSizeAttributeValue($variation); ?>": {
+					<?php foreach ($this->getVariations($product) as $code => $variation): ?>
+						"<?php echo (int)$code; ?>": {
 							<?php foreach ($this->getVariationSizeMeAttributes($variation) as $name => $value): ?>
 								"<?php echo $this->jsQuoteEscape($name); ?>": <?php echo(int)$value; ?>,
 							<?php endforeach; ?>
@@ -74,8 +75,8 @@ $helper = Mage::helper('sizeme_measurements');
 		name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
 		SKU: "<?php echo $this->jsQuoteEscape($product->getSKU()); ?>",
 		item: {
-			<?php foreach ($this->getVariations($product) as $variation): ?>
-				"<?php echo $this->jsQuoteEscape($variation->getSKU()); ?>": "<?php echo (int)$helper->getSizeAttributeValue($variation); ?>",
+			<?php foreach ($this->getVariations($product) as $code => $variation): ?>
+				"<?php echo $this->jsQuoteEscape($variation->getSKU()); ?>": "<?php echo (int)$code; ?>",
 			<?php endforeach; ?>
 		}
 	<?php endif; ?>
