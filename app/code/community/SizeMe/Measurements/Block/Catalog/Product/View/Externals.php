@@ -20,21 +20,21 @@
  *
  * @category  SizeMe
  * @package   SizeMe_Measurements
- * @author    SizeMe Ltd <magento@sizeme.com>
- * @copyright Copyright (c) 2015 SizeMe Ltd (http://www.sizeme.com/)
+ * @author    SizeMe Ltd <plugins@sizeme.com>
+ * @copyright Copyright (c) 2017 SizeMe Ltd (https://www.sizeme.com/)
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
- * SizeMe catalog product view head block.
+ * SizeMe catalog product view block to insert SizeMe external references (js and css).
  *
- * Adds the needed CSS && JS to the page <head> element.
+ * Adds the needed CSS && JS to the page.
  *
  * @category SizeMe
  * @package  SizeMe_Measurements
- * @author   SizeMe Ltd <magento@sizeme.com>
+ * @author   SizeMe Ltd <plugins@sizeme.com>
  */
-class SizeMe_Measurements_Block_Catalog_Product_View_Head extends Mage_Catalog_Block_Product_Abstract
+class SizeMe_Measurements_Block_Catalog_Product_View_Externals extends Mage_Catalog_Block_Product_Abstract
 {
 
     /**
@@ -50,7 +50,6 @@ class SizeMe_Measurements_Block_Catalog_Product_View_Head extends Mage_Catalog_B
         $product = $this->getProduct();
         if (!$helper->isActive()
             || !$product->isConfigurable()
-            || $helper->hasSwatchAttributes($product)
         ) {
             return '';
         }
@@ -78,5 +77,17 @@ class SizeMe_Measurements_Block_Catalog_Product_View_Head extends Mage_Catalog_B
     {
         return $this->helper('sizeme_measurements')->getCustomSizeSelection() ? 'yes' : 'no';
     }
+	
+    /**
+     * Returns the version number of the extension.
+     *
+     * @return string the module version.
+     */
+    public function getModuleVersion()
+    {
+        // Path is hard-coded to be like in "etc/config.xml".
+        return (string)"MAG1-".Mage::getConfig()->getNode('modules/SizeMe_Measurements/version');
+    }
+
 
 }

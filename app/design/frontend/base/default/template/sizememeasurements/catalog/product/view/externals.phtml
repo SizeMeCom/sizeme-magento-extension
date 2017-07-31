@@ -1,0 +1,95 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category  SizeMe
+ * @package   SizeMe_Measurements
+ * @author    SizeMe Ltd <plugins@sizeme.com>
+ * @copyright Copyright (c) 2017 SizeMe Ltd (https://www.sizeme.com/)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+
+<?php
+/**
+ * @var $this SizeMe_Measurements_Block_Catalog_Product_View_Externals
+ */
+
+?>
+
+<script type="text/javascript">
+//<![CDATA[
+var sizeme_options = {
+	service_status: "<?php echo $this->jsQuoteEscape($this->getServiceStatus()); ?>",
+	buttonize: "<?php echo $this->jsQuoteEscape($this->getCustomSizeSelection()); ?>",
+	pluginVersion: "<?php echo $this->getModuleVersion(); ?>",
+	shopType: "magento",
+	uiOptions: {}
+};
+
+<?php
+
+	// POSSIBLE EXTRA UI OPTIONS
+	$uiOptions = $this->helper('sizeme_measurements')->getUiOptionsArray();
+
+	$allSizeMeOptions = array(
+							'appendContentTo' => 'append_content_to',
+							'invokeElement' => 'invoke_element',
+							'addToCartElement' => 'add_to_cart_element',
+							'sizeSelectorType' => 'size_selector_type',
+							'skinClasses' => 'skin_string',
+							'lang' => 'lang_override',
+						);
+
+	foreach($allSizeMeOptions as $key => $value) {
+		// write all non-empty fields to override platform specific default values defined in standard js
+		if (trim($uiOptions[$value])) echo 'sizeme_options.uiOptions.'.$key.' = "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
+	}
+
+	// SWATCHES
+	$product = $this->getProduct();
+	$swatch_attributes = $this->helper('sizeme_measurements')->getSwatchAttributes($product);
+
+	if ($swatch_attributes) {
+		echo 'sizeme_options.uiOptions.sizeSelectorType = "swatches";'.PHP_EOL;
+		echo 'sizeme_options.uiOptions.invokeElement = "#configurable_swatch_size";'.PHP_EOL;
+	}
+
+	$sizeme_address = "sizeme.com";
+
+	// TEST MODE
+	if ( $this->helper('sizeme_measurements')->isServiceTest() ) {
+		// echo 'sizeme_options.contextAddress = "https://sizeme.greitco.com";'.PHP_EOL;
+		// $sizeme_address = "test.sizeme.com";
+		echo 'sizeme_options.gaTrackingId = "UA-40735596-2";'.PHP_EOL;
+		echo 'sizeme_options.debugState = "true";'.PHP_EOL;
+	}
+
+?>
+//]]>
+</script>
+
+<link rel="stylesheet" type="text/css" href="//<?php echo $sizeme_address ?>/3.0/sizeme-styles.css" />
+<script type="text/javascript" src="//<?php echo $sizeme_address ?>/3.0/sizeme-manifest.js"></script>
+<script type="text/javascript" src="//<?php echo $sizeme_address ?>/3.0/sizeme-vendor.js"></script>
+<script type="text/javascript" src="//<?php echo $sizeme_address ?>/3.0/sizeme.js"></script>
+
+<?php
+// write possible custom css
+if (trim($uiOptions['custom_css'])) echo '<style type="text/css">'.$this->jsQuoteEscape(trim($uiOptions['custom_css'])).'</style>'.PHP_EOL;

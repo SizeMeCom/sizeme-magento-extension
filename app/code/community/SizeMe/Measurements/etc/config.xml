@@ -21,15 +21,15 @@
  *
  * @category  SizeMe
  * @package   SizeMe_Measurements
- * @author    SizeMe Ltd <magento@sizeme.com>
- * @copyright Copyright (c) 2015 SizeMe Ltd (http://www.sizeme.com/)
+ * @author    SizeMe Ltd <plugins@sizeme.com>
+ * @copyright Copyright (c) 2017 SizeMe Ltd (https://www.sizeme.com/)
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 -->
 <config>
     <modules>
         <SizeMe_Measurements>
-            <version>0.1.0</version>
+            <version>1.0.0</version>
         </SizeMe_Measurements>
     </modules>
     <global>
@@ -75,6 +75,24 @@
                     </sizeme_measurements_adminhtml_catalog_product_edit_prepare_form>
                 </observers>
             </adminhtml_catalog_product_edit_prepare_form>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <sizeme_measurements_checkout_cart_product_add_after>
+                        <type>singleton</type>
+                        <class>SizeMe_Measurements_Model_Observer</class>
+                        <method>sendAddToCart</method>
+                    </sizeme_measurements_checkout_cart_product_add_after>
+                </observers>
+            </checkout_cart_product_add_after>
+            <sales_order_save_commit_after>
+                <observers>
+                    <sizeme_measurements_sales_order_save_commit_after>
+                        <type>singleton</type>
+                        <class>SizeMe_Measurements_Model_Observer</class>
+                        <method>sendOrderConfirmation</method>
+                    </sizeme_measurements_sales_order_save_commit_after>
+                </observers>
+            </sales_order_save_commit_after>
         </events>
     </global>
     <frontend>
@@ -105,17 +123,13 @@
                 <replace_product_view_type_configurable_template>1</replace_product_view_type_configurable_template>
             </template_settings>
             <ui_options>
-                <prepend_top_header_element>body</prepend_top_header_element>
-                <append_in_content_toggler_element>.slider_text_below</append_in_content_toggler_element>
-                <actual_selection_element>option</actual_selection_element>
-                <visual_selection_element>div.sm-button</visual_selection_element>
-                <append_slider_element>.product-options-bottom</append_slider_element>
-                <size_selection_container_element>.product-box</size_selection_container_element>
-                <after_detailed_link_element>.product-options label.required</after_detailed_link_element>
-                <after_remorse_box_element>.footer address</after_remorse_box_element>
-                <append_detailed_view_element>.slider_text_below</append_detailed_view_element>
-                <insert_messages_element>.slider_text_more_below</insert_messages_element>
-                <append_size_guide_element>#detail</append_size_guide_element>
+                <append_content_to></append_content_to>
+                <invoke_element></invoke_element>
+                <add_to_cart_element></add_to_cart_element>
+                <size_selector_type></size_selector_type>
+                <lang_override></lang_override>
+                <skin_string></skin_string>
+                <custom_css></custom_css>
             </ui_options>
         </sizeme_measurements>
     </default>

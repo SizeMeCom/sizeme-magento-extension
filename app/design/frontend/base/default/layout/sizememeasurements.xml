@@ -21,22 +21,22 @@
  *
  * @category  SizeMe
  * @package   SizeMe_Measurements
- * @author    SizeMe Ltd <magento@sizeme.com>
- * @copyright Copyright (c) 2015 SizeMe Ltd (http://www.sizeme.com/)
+ * @author    SizeMe Ltd <plugins@sizeme.com>
+ * @copyright Copyright (c) 2017 SizeMe Ltd (https://www.sizeme.com/)
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 -->
 <layout version="1.0.0">
     <!-- Product page -->
     <catalog_product_view>
-        <!-- Page <head> block -->
-        <reference name="head">
+        <!-- Before Page <body> end -->
+        <reference name="before_body_end">
             <!-- Add SizeMe CSS & JavaScript -->
-            <block type="sizeme_measurements/catalog_product_view_head" name="sizeme_measurements.product.head" template="sizememeasurements/catalog/product/view/head.phtml" before="-"/>
+            <block type="sizeme_measurements/catalog_product_view_externals" name="sizeme_measurements.product.externals" template="sizememeasurements/catalog/product/view/externals.phtml" before="-"/>
         </reference>
         <!-- Page main content block -->
         <reference name="content">
-            <!-- Add SizMe product meta-data -->
+            <!-- Add SizeMe product meta-data -->
             <block type="sizeme_measurements/catalog_product_view_content" name="sizeme_measurements.product.content" template="sizememeasurements/catalog/product/view/content.phtml" after="product.info"/>
         </reference>
     </catalog_product_view>

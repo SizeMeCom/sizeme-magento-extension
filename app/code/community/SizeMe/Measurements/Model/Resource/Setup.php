@@ -20,8 +20,8 @@
  *
  * @category  SizeMe
  * @package   SizeMe_Measurements
- * @author    SizeMe Ltd <magento@sizeme.com>
- * @copyright Copyright (c) 2015 SizeMe Ltd (http://www.sizeme.com/)
+ * @author    SizeMe Ltd <plugins@sizeme.com>
+ * @copyright Copyright (c) 2017 SizeMe Ltd (https://www.sizeme.com/)
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -32,7 +32,7 @@
  *
  * @category SizeMe
  * @package  SizeMe_Measurements
- * @author   SizeMe Ltd <magento@sizeme.com>
+ * @author   SizeMe Ltd <plugins@sizeme.com>
  */
 class SizeMe_Measurements_Model_Resource_Setup extends Mage_Eav_Model_Entity_Setup
 {
@@ -43,19 +43,19 @@ class SizeMe_Measurements_Model_Resource_Setup extends Mage_Eav_Model_Entity_Set
         'install' => array(
             'smi_item_type' => array(
                 'group' => SizeMe_Measurements_Helper_Data::ATTRIBUTE_GROUP_NAME,
-                'label' => 'SizeMe Item Type',
+                'label' => 'Item Type',
                 'visible' => true,
-                'type' => 'int',
+                'type' => 'varchar',
                 'input' => 'text',
                 'required' => false,
                 'user_defined' => 1,
-                'default' => 0,
+                'default' => '',
                 'global' => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
                 'unique' => false
             ),
             'smi_item_layer' => array(
                 'group' => SizeMe_Measurements_Helper_Data::ATTRIBUTE_GROUP_NAME,
-                'label' => 'SizeMe Item Layer',
+                'label' => 'Item Layer',
                 'visible' => true,
                 'type' => 'int',
                 'input' => 'text',
@@ -65,7 +65,7 @@ class SizeMe_Measurements_Model_Resource_Setup extends Mage_Eav_Model_Entity_Set
             ),
             'smi_item_thickness' => array(
                 'group' => SizeMe_Measurements_Helper_Data::ATTRIBUTE_GROUP_NAME,
-                'label' => 'SizeMe Item Thickness',
+                'label' => 'Item Thickness',
                 'visible' => true,
                 'type' => 'int',
                 'input' => 'text',
@@ -75,7 +75,17 @@ class SizeMe_Measurements_Model_Resource_Setup extends Mage_Eav_Model_Entity_Set
             ),
             'smi_item_stretch' => array(
                 'group' => SizeMe_Measurements_Helper_Data::ATTRIBUTE_GROUP_NAME,
-                'label' => 'SizeMe Item Stretch',
+                'label' => 'Item Stretch',
+                'visible' => true,
+                'type' => 'int',
+                'input' => 'text',
+                'required' => false,
+                'user_defined' => 1,
+                'default' => 0,
+            ),
+            'smi_item_fit_recommendation' => array(
+                'group' => SizeMe_Measurements_Helper_Data::ATTRIBUTE_GROUP_NAME,
+                'label' => 'Item Fit Recommendation',
                 'visible' => true,
                 'type' => 'int',
                 'input' => 'text',

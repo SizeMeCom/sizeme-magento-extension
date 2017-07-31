@@ -20,8 +20,8 @@
  *
  * @category  SizeMe
  * @package   SizeMe_Measurements
- * @author    SizeMe Ltd <magento@sizeme.com>
- * @copyright Copyright (c) 2015 SizeMe Ltd (http://www.sizeme.com/)
+ * @author    SizeMe Ltd <plugins@sizeme.com>
+ * @copyright Copyright (c) 2017 SizeMe Ltd (https://www.sizeme.com/)
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 ?>
@@ -32,27 +32,54 @@
  */
 $product = $this->getProduct();
 
-$type = (int)$product->getSmiItemType();
-$layer = (int)$product->getSmiItemLayer();
-$thickness = (int)$product->getSmiItemThickness();
-$stretch = (int)$product->getSmiItemStretch();
+$type = trim((string)$product->getSmiItemType());
 /** @var SizeMe_Measurements_Helper_Data $helper */
 $helper = Mage::helper('sizeme_measurements');
+
 ?>
 
 <script type="text/javascript">
     //<![CDATA[
-    /* todo: consider changing variable name to "sizeme_product", to avoid name collisions in the global scope. confirm with SizeMe. */
-    var product = {
-        name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
-        item: new SizeMe.Item(<?php echo $type; ?>, <?php echo $layer; ?>, <?php echo $thickness; ?>, <?php echo $stretch; ?>)
-    <?php foreach ($this->getVariations($product) as $variation): ?>
-        .addSize(<?php echo (int)$helper->getSizeAttributeValue($variation); ?>, new SizeMe.Map()
-        <?php foreach ($this->getVariationSizeMeAttributes($variation) as $name => $value): ?>
-            .addItem("<?php echo $this->jsQuoteEscape($name); ?>", <?php echo(int)$value; ?>)
-        <?php endforeach; ?>
-        )
-    <?php endforeach; ?>
+    var sizeme_product = {
+	<?php if ($type) : ?>
+		<?php
+		// if itemType code exists, write local DB version
+		?>
+		<?php
+			$layer = (int)$product->getSmiItemLayer();
+			$thickness = (int)$product->getSmiItemThickness();
+			$stretch = (int)$product->getSmiItemStretch();
+			$recommendation = (int)$product->getSmiItemFitRecommendation();
+		?>
+			name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
+			item: {
+				itemType: "<?php echo $type; ?>",
+				itemLayer: <?php echo $layer; ?>,
+				itemThickness: <?php echo $thickness; ?>,
+				itemStretch:	<?php echo $stretch; ?>,
+				fitRecommendation: <?php echo $recommendation; ?>,
+				measurements: {
+					<?php foreach ($this->getVariations($product) as $code => $variation): ?>
+						"<?php echo (int)$code; ?>": {
+							<?php foreach ($this->getVariationSizeMeAttributes($variation) as $name => $value): ?>
+								"<?php echo $this->jsQuoteEscape($name); ?>": <?php echo(int)$value; ?>,
+							<?php endforeach; ?>
+						},
+					<?php endforeach; ?>
+				}
+			}
+	<?php else: ?>
+		<?php
+		// else write version to use SKU's to find this one in the universal SizeMe Product Database
+		?>
+		name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
+		SKU: "<?php echo $this->jsQuoteEscape($product->getSKU()); ?>",
+		item: {
+			<?php foreach ($this->getVariations($product) as $code => $variation): ?>
+				"<?php echo $this->jsQuoteEscape($variation->getSKU()); ?>": "<?php echo (int)$code; ?>",
+			<?php endforeach; ?>
+		}
+	<?php endif; ?>
     };
     //]]>
 </script>

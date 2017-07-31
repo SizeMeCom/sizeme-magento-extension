@@ -20,8 +20,8 @@
  *
  * @category  SizeMe
  * @package   SizeMe_Measurements
- * @author    SizeMe Ltd <magento@sizeme.com>
- * @copyright Copyright (c) 2015 SizeMe Ltd (http://www.sizeme.com/)
+ * @author    SizeMe Ltd <plugins@sizeme.com>
+ * @copyright Copyright (c) 2017 SizeMe Ltd (https://www.sizeme.com/)
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -31,7 +31,7 @@
  *
  * @category SizeMe
  * @package  SizeMe_Measurements
- * @author   SizeMe Ltd <magento@sizeme.com>
+ * @author   SizeMe Ltd <plugins@sizeme.com>
  */
 class SizeMe_Measurements_Model_Observer
 {
@@ -104,6 +104,64 @@ class SizeMe_Measurements_Model_Observer
                 $renderer->setTemplate(
                     'sizememeasurements/widget/form/renderer/fieldset.phtml'
                 );
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Sends a product info API request to SizeMe if a product is added to the cart.
+     *
+     * Event 'checkout_cart_product_add_after'.
+     *
+     * @param Varien_Event_Observer $observer the event observer.
+     *
+     * @return SizeMe_Measurements_Model_Observer
+     */
+    public function sendAddToCart(Varien_Event_Observer $observer)
+    {
+        if (Mage::helper('sizeme_measurements')->isModuleEnabled()) {
+            try {
+                /** @var Mage_Sales_Model_Quote_Item $mageItem */
+                $mageItem = $observer->getEvent()->getQuoteItem();
+
+                /** @var Sizeme_Measurements_Model_Meta_Quote_Item $item */
+                $item = Mage::getModel('sizeme_measurements/meta_quote_item');
+                $item->send($mageItem);
+
+            } catch (Exception $e) {
+                Mage::log("\n" . $e->__toString(), Zend_Log::ERR, 'sizeme_measurements.log');
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Sends an order confirmation API request to SizeMe if the order is completed.
+     *
+     * Event 'sales_order_save_commit_after'.
+     *
+     * @param Varien_Event_Observer $observer the event observer.
+     *
+     * @return SizeMe_Measurements_Model_Observer
+     */
+    public function sendOrderConfirmation(Varien_Event_Observer $observer)
+    {
+        if (Mage::helper('sizeme_measurements')->isModuleEnabled()) {
+            try {
+                /** @var Mage_Sales_Model_Order $mageOrder */
+                $mageOrder = $observer->getEvent()->getOrder();
+
+                /** @var SizeMe_Measurements_Model_Meta_Order $order */
+                $order = Mage::getModel('sizeme_measurements/meta_order');
+                $order->loadData($mageOrder);
+
+                $order->send();
+
+            } catch (Exception $e) {
+                Mage::log("\n" . $e->__toString(), Zend_Log::ERR, 'sizeme_measurements.log');
             }
         }
 

@@ -20,8 +20,8 @@
  *
  * @category  SizeMe
  * @package   SizeMe_Measurements
- * @author    SizeMe Ltd <magento@sizeme.com>
- * @copyright Copyright (c) 2015 SizeMe Ltd (http://www.sizeme.com/)
+ * @author    SizeMe Ltd <plugins@sizeme.com>
+ * @copyright Copyright (c) 2017 SizeMe Ltd (https://www.sizeme.com/)
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -32,7 +32,7 @@
  *
  * @category SizeMe
  * @package  SizeMe_Measurements
- * @author   SizeMe Ltd <magento@sizeme.com>
+ * @author   SizeMe Ltd <plugins@sizeme.com>
  */
 class SizeMe_Measurements_Block_Catalog_Product_View_Content extends Mage_Catalog_Block_Product_Abstract
 {
@@ -53,7 +53,6 @@ class SizeMe_Measurements_Block_Catalog_Product_View_Content extends Mage_Catalo
         $product = $this->getProduct();
         if (!$helper->isActive()
             || !$product->isConfigurable()
-            || $helper->hasSwatchAttributes($product)
         ) {
             return '';
         }
