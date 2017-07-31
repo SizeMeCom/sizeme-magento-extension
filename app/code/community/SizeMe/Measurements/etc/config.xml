@@ -29,7 +29,7 @@
 <config>
     <modules>
         <SizeMe_Measurements>
-            <version>1.0.0</version>
+            <version>1.0.3</version>
         </SizeMe_Measurements>
     </modules>
     <global>

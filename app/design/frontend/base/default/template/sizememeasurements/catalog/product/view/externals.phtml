@@ -36,7 +36,7 @@
 <script type="text/javascript">
 //<![CDATA[
 var sizeme_options = {
-	service_status: "<?php echo $this->jsQuoteEscape($this->getServiceStatus()); ?>",
+	serviceStatus: "<?php echo $this->jsQuoteEscape($this->getServiceStatus()); ?>",
 	buttonize: "<?php echo $this->jsQuoteEscape($this->getCustomSizeSelection()); ?>",
 	pluginVersion: "<?php echo $this->getModuleVersion(); ?>",
 	shopType: "magento",
@@ -75,8 +75,6 @@ var sizeme_options = {
 
 	// TEST MODE
 	if ( $this->helper('sizeme_measurements')->isServiceTest() ) {
-		// echo 'sizeme_options.contextAddress = "https://sizeme.greitco.com";'.PHP_EOL;
-		// $sizeme_address = "test.sizeme.com";
 		echo 'sizeme_options.gaTrackingId = "UA-40735596-2";'.PHP_EOL;
 		echo 'sizeme_options.debugState = "true";'.PHP_EOL;
 	}

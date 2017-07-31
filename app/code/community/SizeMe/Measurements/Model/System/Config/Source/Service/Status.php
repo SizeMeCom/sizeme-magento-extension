@@ -57,6 +57,10 @@ class SizeMe_Measurements_Model_System_Config_Source_Service_Status
                 'value' => SizeMe_Measurements_Helper_Data::SERVICE_STATUS_TEST
             ),
             array(
+                'label' => Mage::helper('sizeme_measurements')->__('A/B Testing'),
+                'value' => SizeMe_Measurements_Helper_Data::SERVICE_STATUS_AB
+            ),
+            array(
                 'label' => Mage::helper('sizeme_measurements')->__('On'),
                 'value' => SizeMe_Measurements_Helper_Data::SERVICE_STATUS_ON
             ),
