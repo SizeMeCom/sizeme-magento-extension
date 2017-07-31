@@ -64,19 +64,12 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
 
 
     /**
-     * Service status on.
+     * Service statuses.
      */
     const SERVICE_STATUS_ON = 'on';
-
-    /**
-     * Service status off.
-     */
     const SERVICE_STATUS_OFF = 'off';
-
-    /**
-     * Service status test.
-     */
     const SERVICE_STATUS_TEST = 'test';
+    const SERVICE_STATUS_AB = 'ab';
 
     /**
      * The module attribute set name.
