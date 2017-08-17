@@ -141,7 +141,7 @@ class SizeMe_Measurements_Model_Observer
     /**
      * Sends an order confirmation API request to SizeMe if the order is completed.
      *
-     * Event 'sales_order_save_commit_after'.
+     * Event 'sales_order_place_after'.
      *
      * @param Varien_Event_Observer $observer the event observer.
      *

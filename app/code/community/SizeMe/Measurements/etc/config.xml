@@ -29,7 +29,7 @@
 <config>
     <modules>
         <SizeMe_Measurements>
-            <version>1.0.3</version>
+            <version>1.0.4</version>
         </SizeMe_Measurements>
     </modules>
     <global>
@@ -84,15 +84,15 @@
                     </sizeme_measurements_checkout_cart_product_add_after>
                 </observers>
             </checkout_cart_product_add_after>
-            <sales_order_save_commit_after>
+            <sales_order_place_after>
                 <observers>
-                    <sizeme_measurements_sales_order_save_commit_after>
+                    <sizeme_measurements_sales_order_place_after>
                         <type>singleton</type>
                         <class>SizeMe_Measurements_Model_Observer</class>
                         <method>sendOrderConfirmation</method>
-                    </sizeme_measurements_sales_order_save_commit_after>
+                    </sizeme_measurements_sales_order_place_after>
                 </observers>
-            </sales_order_save_commit_after>
+            </sales_order_place_after>
         </events>
     </global>
     <frontend>
@@ -117,6 +117,7 @@
         <sizeme_measurements>
             <general>
                 <service_status>off</service_status>
+                <api_key></api_key>				
                 <custom_size_selection>0</custom_size_selection>
             </general>
             <template_settings>

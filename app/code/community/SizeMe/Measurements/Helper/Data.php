@@ -39,6 +39,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
      * General options store config save paths.
      */
     const XML_PATH_SERVICE_STATUS        = 'sizeme_measurements/general/service_status';
+    const XML_PATH_API_KEY               = 'sizeme_measurements/general/api_key';
     const XML_PATH_CUSTOM_SIZE_SELECTION = 'sizeme_measurements/general/custom_size_selection';
 
     /**
@@ -80,11 +81,10 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
      * Info related to SizeMe API requests
      */
 	const API_CONTEXT_ADDRESS   = 'https://sizeme.com';
-	const API_SEND_ORDER_INFO   = '/api/sendOrderComplete';
-	const API_SEND_ADD_TO_CART  = '/api/sendAddToCart';
+	const API_SEND_ORDER_INFO   = '/shop-api/sendOrderComplete';
+	const API_SEND_ADD_TO_CART  = '/shop-api/sendAddToCart';
 	const COOKIE_SESSION   		= 'frontend';		// Magento specific
 	const COOKIE_ACTION   		= 'sm_action';
-
 
     /**
      * Returns the service status for the store.
@@ -113,6 +113,21 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $this->parseAttributeIds($idString);
     }
+	
+    /**
+     * Returns SizeMe API key
+     *
+     * @param Mage_Core_Model_Store $store optional store (will use current store if null).
+     *
+     * @return string
+     */
+    public function getApiKey(Mage_Core_Model_Store $store = null)
+    {
+        return (string)Mage::getStoreConfig(
+            self::XML_PATH_API_KEY,
+            $store
+        );
+    }	
 
     /**
      * Returns option for the buttonize setting.

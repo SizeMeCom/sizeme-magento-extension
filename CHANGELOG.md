@@ -1,5 +1,8 @@
 All notable changes to this project will be documented in this file. This project adheres to Semantic Versioning.
 
+### 1.0.4
+* API key added to admin and also sent along the two different API events
+
 ### 1.0.3
 * A/B Testing option added to Service Status
 * Service Status also upgraded to camelCase
