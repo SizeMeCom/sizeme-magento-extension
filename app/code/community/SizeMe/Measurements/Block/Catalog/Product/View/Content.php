@@ -75,6 +75,22 @@ class SizeMe_Measurements_Block_Catalog_Product_View_Content extends Mage_Catalo
     }
 
     /**
+     * Returns the attribute value label for the "size" attribute for the product.
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param bool                       $one true if we want only one code, false if we want a list.
+     *
+     * @return string The attribute value label.
+     */
+    protected function getSizeAttributeValueLabels(Mage_Catalog_Model_Product $product, $one = true)
+    {
+        /** @var SizeMe_Measurements_Helper_Data $helper */
+        $helper = Mage::helper('sizeme_measurements');
+        return $helper->getSizeAttributeValueLabels($product, $one);
+    }
+
+
+    /**
      * Returns a map of SizeMe attribute names with their corresponding values.
      *
      * The map can be directly converted into and JS SizeMe product item in the

@@ -42,6 +42,9 @@ class Sizeme_Measurements_Model_Meta_Quote_Item extends Mage_Core_Model_Abstract
      */
     public function send(Mage_Sales_Model_Quote_Item $item)
     {
+		$helper = Mage::helper('sizeme_measurements');
+		$api_key = $helper->getApiKey();
+
 		$data_string = json_encode($this->handleQuoteItemToArray($item));
 
 		$ch = curl_init(SizeMe_Measurements_Helper_Data::API_CONTEXT_ADDRESS . SizeMe_Measurements_Helper_Data::API_SEND_ADD_TO_CART);
@@ -50,7 +53,8 @@ class Sizeme_Measurements_Model_Meta_Quote_Item extends Mage_Core_Model_Abstract
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 			'Content-Type: application/json',
-			'Content-Length: ' . strlen($data_string))
+			'Content-Length: ' . strlen($data_string),
+			'X-Sizeme-Apikey: ' . $api_key)
 		);
 
 		$result = curl_exec($ch);

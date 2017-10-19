@@ -1,4 +1,4 @@
-# SizeMe for Magento
+# SizeMe for Magento 1
 
 SizeMe is a service designed to help you provide better product information for your customers.
 With SizeMe you can enter the actual measurements of your product and show an actual Size Guide.
@@ -29,13 +29,23 @@ The required product information is a little different on _configurable_ and _si
 The configurable product should hold the common SizeMe information for the whole product.  These fields are:
 
 #### Item Type
-This code is used to tell SizeMe what the type of the product is.  Please see [the full reference](http://example.com).
+This field works in two wonderful ways:
+
+A)  If you are planning to input the product measurements in your local store database, this field is used to tell SizeMe what the type of the product is.  
 * Type: string, 7-digit dot-separated code
   Examples:
   * Normal short sleeved T-shirt: 1.1.1.3.0.4.0
   * Sweatshirt with hood: 1.3.1.6.1.4.1
   * Trousers: 2.0.0.6.0.3.0
   * Shoes: 3.0.0.0.0.0.0
+  
+B)  If you want to use the SizeMe Template Engine for a quick proof-of-concept or even some actual sales, enter the template name in this field and no other fields are necessary!
+* Type: string
+  Examples:
+  * Most Vans shoes: SHOE-VANS
+  * Basic T-shirt: T-SHIRT
+
+Please contact [sales@sizeme.com](sales@sizeme.com) for more details on both options.  
 
 #### Item Layer
 This code tells on what layer is the product to be worn on.
@@ -85,11 +95,14 @@ The simple products, which are the single sizes (or size and color combinations)
 ### General:
 
 #### Service status
-There are three options for this value: On, Test and Off.
-* "On" means that the service is live normally.  
+* "On" means that the service is live normally.
 * "Test" means that a special test version of the service is active.  Debug info is written to the console.  This shouldn't be used in live production sites.
 * "Off" means that no SizeMe functionality is included in your store.
 Default value: Off
+
+#### API key
+This plugin sends and receives information from the SizeMe server.  In order to authenticate the source of this information, we use a special API key unique for your store.  In order to get an API key for your store, please contact info@sizeme.com and we'll send one over asap.  This process should be automated somehow in the future (in the year 2000).
+Default value: <none>
 
 #### Change Size Selection to Buttons
 This is a bit of a bonus feature.  If this value is set to "Yes" and the service is "On" or "Test", the plugin will try to convert your size selection drop-down to a set of clickable buttons.  This currently doesn't work with products with multiple selections (such as color _and_ size).
@@ -144,13 +157,3 @@ This space-separated list is like a extra class definition for SizeMe content.  
 This text field can be used to write some custom CSS to the page.  This is another opportunity to make changes to the SizeMe user interface, you can change the colors and stuff like that.
 * Type: CSS code
 * Default: defined in sizeme-styles.css
-
-
-
-
-
-
-
-
-
-

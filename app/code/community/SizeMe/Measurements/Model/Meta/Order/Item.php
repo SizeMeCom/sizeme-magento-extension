@@ -36,14 +36,8 @@
 class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
 {
     /**
-     * @var string|int the unique identifier of the purchased item.
-     * If this item is for discounts or shipping cost, the id can be 0.
-     */
-    protected $_productId;
-
-    /**
-     * @var string|int another unique identifier of the purchased item.
-     * If this item is for discounts or shipping cost, the id might be 0.
+     * @var string|int unique identifier of the purchased item.
+     * If this item is for discounts or shipping cost, the id might be empty.
      */
     protected $_SKU;
 
@@ -88,7 +82,6 @@ class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
     public function loadData(Mage_Sales_Model_Order_Item $item)
     {
         $order = $item->getOrder();
-        $this->_productId = (int)$this->fetchProductId($item);
         $this->_SKU = $item->getSku();
         $this->_quantity = (int)$item->getQtyOrdered();
         $this->_name = $this->fetchProductName($item);
@@ -108,25 +101,12 @@ class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
      */
     public function loadSpecialItemData($name, $unitPrice, $currencyCode)
     {
-        $this->_productId = -1;
         $this->_SKU = '';
         $this->_quantity = 1;
         $this->_name = (string)$name;
         $this->_unitPrice = $unitPrice;
         $this->_unitPriceExclTax = 0;
         $this->_currencyCode = strtoupper($currencyCode);
-    }
-
-    /**
-     * Returns the product id for a quote item.
-     *
-     * @param Mage_Sales_Model_Order_Item $item the sales item model.
-     *
-     * @return int
-     */
-    protected function fetchProductId(Mage_Sales_Model_Order_Item $item)
-    {
-        return $item->getProductId();
     }
 
     /**
@@ -155,17 +135,6 @@ class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
 		$finalPriceExcludingTax = Mage::helper('tax')
 			->getPrice($_product, $_product->getFinalPrice(), false );
         return $finalPriceExcludingTax;
-    }
-
-    /**
-     * The unique identifier of the purchased item.
-     * If this item is for discounts or shipping cost, the id can be 0.
-     *
-     * @return string|int
-     */
-    public function getProductId()
-    {
-        return $this->_productId;
     }
 
     /**

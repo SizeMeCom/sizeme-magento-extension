@@ -31,55 +31,79 @@
  * @var $this SizeMe_Measurements_Block_Catalog_Product_View_Content
  */
 $product = $this->getProduct();
-
 $type = trim((string)$product->getSmiItemType());
-/** @var SizeMe_Measurements_Helper_Data $helper */
-$helper = Mage::helper('sizeme_measurements');
 
 ?>
 
 <script type="text/javascript">
-    //<![CDATA[
-    var sizeme_product = {
-	<?php if ($type) : ?>
-		<?php
-		// if itemType code exists, write local DB version
-		?>
-		<?php
-			$layer = (int)$product->getSmiItemLayer();
-			$thickness = (int)$product->getSmiItemThickness();
-			$stretch = (int)$product->getSmiItemStretch();
-			$recommendation = (int)$product->getSmiItemFitRecommendation();
-		?>
-			name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
-			item: {
-				itemType: "<?php echo $type; ?>",
-				itemLayer: <?php echo $layer; ?>,
-				itemThickness: <?php echo $thickness; ?>,
-				itemStretch:	<?php echo $stretch; ?>,
-				fitRecommendation: <?php echo $recommendation; ?>,
-				measurements: {
-					<?php foreach ($this->getVariations($product) as $code => $variation): ?>
-						"<?php echo (int)$code; ?>": {
-							<?php foreach ($this->getVariationSizeMeAttributes($variation) as $name => $value): ?>
-								"<?php echo $this->jsQuoteEscape($name); ?>": <?php echo(int)$value; ?>,
-							<?php endforeach; ?>
-						},
-					<?php endforeach; ?>
-				}
-			}
-	<?php else: ?>
-		<?php
-		// else write version to use SKU's to find this one in the universal SizeMe Product Database
-		?>
-		name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
-		SKU: "<?php echo $this->jsQuoteEscape($product->getSKU()); ?>",
-		item: {
-			<?php foreach ($this->getVariations($product) as $code => $variation): ?>
-				"<?php echo $this->jsQuoteEscape($variation->getSKU()); ?>": "<?php echo (int)$code; ?>",
-			<?php endforeach; ?>
-		}
-	<?php endif; ?>
-    };
-    //]]>
+  //<![CDATA[
+  var sizeme_product = {
+<?php
+if ($type) :
+?>
+<?php
+// if the itemType code exists,
+// check its contents to see if it's
+// A) a actual itemType code (x.x.x.x.x.x.x where x is an integer) -> write local DB version
+// B) else write template product DB type
+?>
+<?php
+  if (is_numeric(str_replace('.','',$type))) :
+    $layer = (int)$product->getSmiItemLayer();
+    $thickness = (int)$product->getSmiItemThickness();
+    $stretch = (int)$product->getSmiItemStretch();
+    $recommendation = (int)$product->getSmiItemFitRecommendation();
+?>
+      name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
+      item: {
+        itemType: "<?php echo $type; ?>",
+        itemLayer: <?php echo $layer; ?>,
+        itemThickness: <?php echo $thickness; ?>,
+        itemStretch:  <?php echo $stretch; ?>,
+        fitRecommendation: <?php echo $recommendation; ?>,
+        measurements: {
+<?php foreach ($this->getVariations($product) as $code => $variation): ?>
+          "<?php echo (int)$code; ?>": {
+<?php foreach ($this->getVariationSizeMeAttributes($variation) as $name => $value): ?>
+            "<?php echo $this->jsQuoteEscape($name); ?>": <?php echo(int)$value; ?>,
+<?php endforeach; ?>
+          },
+<?php endforeach; ?>
+        }
+      }
+<?php
+  else: ?>
+<?php
+      // write version for templated use of SizeMe Product Database
+?>
+      name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
+      SKU: "<?php echo $this->jsQuoteEscape($type); ?>",
+      item: {
+<?php foreach ($this->getVariations($product) as $code => $variation):
+  $size = $this->getSizeAttributeValueLabels($variation);
+?>
+          "<?php echo $this->jsQuoteEscape($type.'_'.$size); ?>": "<?php echo (int)$code; ?>",
+<?php endforeach; ?>
+      }
+<?php
+  endif;
+?>
+<?php
+else:
+?>
+<?php
+  // else write version to use SKU's to find this one in the universal SizeMe Product Database
+?>
+    name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
+    SKU: "<?php echo $this->jsQuoteEscape($product->getSKU()); ?>",
+    item: {
+<?php foreach ($this->getVariations($product) as $code => $variation): ?>
+        "<?php echo $this->jsQuoteEscape($variation->getSKU()); ?>": "<?php echo (int)$code; ?>",
+<?php endforeach; ?>
+    }
+<?php
+endif;
+?>
+  };
+  //]]>
 </script>
