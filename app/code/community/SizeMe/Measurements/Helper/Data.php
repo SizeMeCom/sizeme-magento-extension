@@ -55,13 +55,13 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * UI option store config save paths.
      */
-    const XML_PATH_UI_OPTION_APPEND_CONTENT_TO 		= 'sizeme_measurements/ui_options/append_content_to';
-    const XML_PATH_UI_OPTION_INVOKE_ELEMENT			= 'sizeme_measurements/ui_options/invoke_element';
-    const XML_PATH_UI_OPTION_ADD_TO_CART_ELEMENT	= 'sizeme_measurements/ui_options/add_to_cart_element';
-    const XML_PATH_UI_OPTION_SIZE_SELECTOR_TYPE		= 'sizeme_measurements/ui_options/size_selector_type';
-    const XML_PATH_UI_OPTION_LANG_OVERRIDE         	= 'sizeme_measurements/ui_options/lang_override';
-    const XML_PATH_UI_OPTION_SKIN_STRING         	= 'sizeme_measurements/ui_options/skin_string';
-    const XML_PATH_UI_OPTION_CUSTOM_CSS         	= 'sizeme_measurements/ui_options/custom_css';
+    const XML_PATH_UI_OPTION_APPEND_CONTENT_TO      = 'sizeme_measurements/ui_options/append_content_to';
+    const XML_PATH_UI_OPTION_INVOKE_ELEMENT         = 'sizeme_measurements/ui_options/invoke_element';
+    const XML_PATH_UI_OPTION_ADD_TO_CART_ELEMENT    = 'sizeme_measurements/ui_options/add_to_cart_element';
+    const XML_PATH_UI_OPTION_SIZE_SELECTOR_TYPE     = 'sizeme_measurements/ui_options/size_selector_type';
+    const XML_PATH_UI_OPTION_LANG_OVERRIDE          = 'sizeme_measurements/ui_options/lang_override';
+    const XML_PATH_UI_OPTION_SKIN_STRING            = 'sizeme_measurements/ui_options/skin_string';
+    const XML_PATH_UI_OPTION_CUSTOM_CSS             = 'sizeme_measurements/ui_options/custom_css';
 
 
     /**
@@ -80,11 +80,11 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Info related to SizeMe API requests
      */
-	const API_CONTEXT_ADDRESS   = 'https://sizeme.com';
-	const API_SEND_ORDER_INFO   = '/shop-api/sendOrderComplete';
-	const API_SEND_ADD_TO_CART  = '/shop-api/sendAddToCart';
-	const COOKIE_SESSION   		= 'frontend';		// Magento specific
-	const COOKIE_ACTION   		= 'sm_action';
+    const API_CONTEXT_ADDRESS   = 'https://sizeme.com';
+    const API_SEND_ORDER_INFO   = '/shop-api/sendOrderComplete';
+    const API_SEND_ADD_TO_CART  = '/shop-api/sendAddToCart';
+    const COOKIE_SESSION        = 'frontend';       // Magento specific
+    const COOKIE_ACTION         = 'sm_action';
 
     /**
      * Returns the service status for the store.
@@ -113,7 +113,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $this->parseAttributeIds($idString);
     }
-	
+
     /**
      * Returns SizeMe API key
      *
@@ -127,7 +127,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             self::XML_PATH_API_KEY,
             $store
         );
-    }	
+    }
 
     /**
      * Returns option for the buttonize setting.
@@ -171,13 +171,13 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             ),
             'skin_string' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_SKIN_STRING, $store
-            ),			
+            ),
             'custom_css' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_CUSTOM_CSS, $store
             ),
         );
     }
-	
+
     /**
      * Checks if the extension is active, i.e. if enabled and service status is
      * something else than "off".
@@ -191,8 +191,8 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             && ($this->getSizeAttributeIds() !== array())
         );
     }
-	
-	
+
+
     /**
      * Returns if service status is "test".
      *
@@ -201,8 +201,8 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     public function isServiceTest()
     {
         return ( $this->getServiceStatus() === self::SERVICE_STATUS_TEST);
-    }	
-	
+    }
+
 
     /**
      * Checks if the given attribute is a "size" attribute.
@@ -284,14 +284,14 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             return false;
         }
 
-		$arr = array();
+        $arr = array();
 
         $swatchesAttributeIds = $this->parseAttributeIds(
             Mage::getStoreConfig('configswatches/general/swatch_attributes')
         );
 
         /** @var Mage_Catalog_Model_Product $variation */
-		$product_variations = $this->getVariations($product);
+        $product_variations = $this->getVariations($product);
         $variation      = array_pop($product_variations);
         $attributeCodes = $this->getSizeAttributeCodes($variation, false);
 
@@ -342,21 +342,21 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             $skipSaleableCheck = $helper->getSkipSaleableCheck();
         }
 
-	// Try to find the correct allowed configurable attribute first
-	$sizeAttributeCode = '';	
+    // Try to find the correct allowed configurable attribute first
+    $sizeAttributeCode = '';
 
-	// Read the allowed attributes
-	$allowedSizeAttributeIds = $this->getSizeAttributeIds();
+    // Read the allowed attributes
+    $allowedSizeAttributeIds = $this->getSizeAttributeIds();
 
-	// Read the configurable attributes from the parent product
-	$attributes = $product->getTypeInstance(true)->getConfigurableAttributes($product);
+    // Read the configurable attributes from the parent product
+    $attributes = $product->getTypeInstance(true)->getConfigurableAttributes($product);
 
-	foreach($attributes as $attribute) {
-		if ( in_array($attribute['attribute_id'], $allowedSizeAttributeIds) ) {
-			$sizeAttributeCode = $attribute->getProductAttribute()->getAttributeCode();
-		}
-	}
-	if (!$sizeAttributeCode) return array();
+    foreach($attributes as $attribute) {
+        if ( in_array($attribute['attribute_id'], $allowedSizeAttributeIds) ) {
+            $sizeAttributeCode = $attribute->getProductAttribute()->getAttributeCode();
+        }
+    }
+    if (!$sizeAttributeCode) return array();
 
         /** @var Mage_Catalog_Model_Product[] $collection */
         $collection = Mage::getModel('catalog/product_type_configurable')
@@ -404,7 +404,29 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
                 $attributeCodes[] = $attribute->getAttributeCode();
             }
         }
-	
+
+        return $one ? array_pop($attributeCodes) : $attributeCodes;
+    }
+
+    /**
+     * Returns the attribute value label for the "size" attribute for the product.
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param bool                       $one true if we want only one code, false if we want a list.
+     *
+     * @return string The attribute value label.
+     */
+    public function getSizeAttributeValueLabels(Mage_Catalog_Model_Product $product, $one = true)
+    {
+        $attributeCodes   = array();
+        $sizeAttributeIds = $this->getSizeAttributeIds();
+
+        foreach ($product->getAttributes() as $attribute) {
+            if (in_array($attribute->getAttributeId(), $sizeAttributeIds)) {
+                $attributeCodes[] = strtoupper(trim($attribute->getFrontend()->getValue($product)));
+            }
+        }
+
         return $one ? array_pop($attributeCodes) : $attributeCodes;
     }
 
@@ -413,22 +435,22 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
      *
      * @return string|null
      */
-	public function getSessionCookie()
-	{
-		$cookie = Mage::getModel('core/cookie');
-		return $cookie->get(self::COOKIE_SESSION);
-	}
+    public function getSessionCookie()
+    {
+        $cookie = Mage::getModel('core/cookie');
+        return $cookie->get(self::COOKIE_SESSION);
+    }
 
     /**
      * Returns the SizeMe action cookie value
      *
      * @return string|null
      */
-	public function getActionCookie()
-	{
-		$cookie = Mage::getModel('core/cookie');
-		return $cookie->get(self::COOKIE_ACTION);
-	}
+    public function getActionCookie()
+    {
+        $cookie = Mage::getModel('core/cookie');
+        return $cookie->get(self::COOKIE_ACTION);
+    }
 
 
 }
