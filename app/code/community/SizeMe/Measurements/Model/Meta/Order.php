@@ -87,7 +87,7 @@ class Sizeme_Measurements_Model_Meta_Order extends Mage_Core_Model_Abstract
      */
     public function loadData(Mage_Sales_Model_Order $order)
     {
-        $this->_orderNumber = $order->getId();
+        $this->_orderNumber = $order->getIncrementId();
         $this->_createdDate = $order->getCreatedAt();
 
 		$helper = Mage::helper('sizeme_measurements');

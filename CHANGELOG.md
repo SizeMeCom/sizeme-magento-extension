@@ -1,5 +1,9 @@
 All notable changes to this project will be documented in this file. This project adheres to Semantic Versioning.
 
+### 1.0.6
+* Service Status "Test" cleaned up
+* Tracking code improvement
+
 ### 1.0.5
 * SizeMe Template Engine support added using the Item Type field
 
