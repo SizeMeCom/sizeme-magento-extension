@@ -90,7 +90,7 @@ class Sizeme_Measurements_Model_Meta_Order extends Mage_Core_Model_Abstract
         $this->_orderNumber = $order->getIncrementId();
         $this->_createdDate = $order->getCreatedAt();
 
-		$helper = Mage::helper('sizeme_measurements');
+        $helper = Mage::helper('sizeme_measurements');
         $this->_orderIdentifier = $helper->getSessionCookie();
 
         /** @var Sizeme_Measurements_Model_Meta_Order_Status $orderStatus */
@@ -141,8 +141,8 @@ class Sizeme_Measurements_Model_Meta_Order extends Mage_Core_Model_Abstract
      *
      * @return array
      */
-	public function handleOrderToArray()
-	{
+    public function handleOrderToArray()
+    {
         $arr = array(
             'orderNumber' => $this->getOrderNumber(),
             'orderIdentifier' => $this->getOrderIdentifier(),
@@ -167,8 +167,9 @@ class Sizeme_Measurements_Model_Meta_Order extends Mage_Core_Model_Abstract
                 'priceCurrencyCode' => strtoupper($item->getCurrencyCode()),
             );
         }
-		return $arr;
-	}
+
+        return $arr;
+    }
 
     /**
      * Sends the order data to SizeMe
@@ -177,25 +178,28 @@ class Sizeme_Measurements_Model_Meta_Order extends Mage_Core_Model_Abstract
      */
     public function send()
     {
-		$helper = Mage::helper('sizeme_measurements');
-		$api_key = $helper->getApiKey();
+        $helper = Mage::helper('sizeme_measurements');
+        $apiKey = $helper->getApiKey();
 
-		$data_string = json_encode($this->handleOrderToArray());
+        $dataString = json_encode($this->handleOrderToArray());
 
-		$ch = curl_init(SizeMe_Measurements_Helper_Data::API_CONTEXT_ADDRESS . SizeMe_Measurements_Helper_Data::API_SEND_ORDER_INFO);
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'Content-Type: application/json',
-			'Content-Length: ' . strlen($data_string),
-			'X-Sizeme-Apikey: ' . $api_key)
-		);
+        $ch = curl_init(
+            SizeMe_Measurements_Helper_Data::API_CONTEXT_ADDRESS . SizeMe_Measurements_Helper_Data::API_SEND_ORDER_INFO
+        );
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt(
+            $ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($dataString),
+            'X-Sizeme-Apikey: ' . $apiKey)
+        );
 
-		$result = curl_exec($ch);
+        $result = curl_exec($ch);
 
-		return ($result !== false);
-	}
+        return ($result !== false);
+    }
 
 
     /**

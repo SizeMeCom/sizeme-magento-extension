@@ -3,4 +3,4 @@ app/design/adminhtml/default/default/layout/sizememeasurements.xml  app/design/a
 app/design/adminhtml/default/default/template/sizememeasurements  app/design/adminhtml/default/default/template/sizememeasurements
 app/design/frontend/base/default/layout/sizememeasurements.xml  app/design/frontend/base/default/layout/sizememeasurements.xml
 app/design/frontend/base/default/template/sizememeasurements  app/design/frontend/base/default/template/sizememeasurements
-etc/modules/SizeMe_Measurements.xml  etc/modules/SizeMe_Measurements.xml
+app/etc/modules/SizeMe_Measurements.xml  app/etc/modules/SizeMe_Measurements.xml

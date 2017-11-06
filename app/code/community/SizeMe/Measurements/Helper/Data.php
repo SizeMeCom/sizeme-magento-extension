@@ -45,7 +45,8 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Template settings store config save paths.
      */
-    const XML_PATH_TEMPLATE_SETTINGS_REPLACE_PRODUCT_VIEW_TYPE_CONFIGURABLE_TEMPLATE = 'sizeme_measurements/template_settings/replace_product_view_type_configurable_template';
+    const XML_PATH_TEMPLATE_SETTINGS_REPLACE_PRODUCT_VIEW_TYPE_CONFIGURABLE_TEMPLATE = 
+        'sizeme_measurements/template_settings/replace_product_view_type_configurable_template';
 
     /**
      * Product attribute store config save paths.
@@ -263,7 +264,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
         $attributeIds = array();
         if (is_string($string) && !empty($string)) {
             $idList = explode(',', $string);
-            if (is_array($idList) && count($idList) > 0) {
+            if (is_array($idList) && !empty($idList)) {
                 $attributeIds = $idList;
             }
         }
@@ -291,8 +292,8 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
         );
 
         /** @var Mage_Catalog_Model_Product $variation */
-        $product_variations = $this->getVariations($product);
-        $variation      = array_pop($product_variations);
+        $productVariations = $this->getVariations($product);
+        $variation      = array_pop($productVariations);
         $attributeCodes = $this->getSizeAttributeCodes($variation, false);
 
         $attributes = Mage::getModel('eav/entity_attribute')->getCollection()
@@ -310,6 +311,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
                 }
             }
         }
+
         return $arr;
     }
 
@@ -351,11 +353,12 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     // Read the configurable attributes from the parent product
     $attributes = $product->getTypeInstance(true)->getConfigurableAttributes($product);
 
-    foreach($attributes as $attribute) {
-        if ( in_array($attribute['attribute_id'], $allowedSizeAttributeIds) ) {
+    foreach ($attributes as $attribute) {
+        if (in_array($attribute['attribute_id'], $allowedSizeAttributeIds)) {
             $sizeAttributeCode = $attribute->getProductAttribute()->getAttributeCode();
         }
     }
+
     if (!$sizeAttributeCode) return array();
 
         /** @var Mage_Catalog_Model_Product[] $collection */
@@ -366,7 +369,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
         foreach ($collection as $item) {
             $sizeAttributeValue = $item->getData($sizeAttributeCode);
 
-            if ( ($item->isSaleable() || $skipSaleableCheck) && !isset($variations[$sizeAttributeValue] ) ) {
+            if (($item->isSaleable() || $skipSaleableCheck) && !isset($variations[$sizeAttributeValue])) {
                 $variations[$sizeAttributeValue] = $item;
             }
         }
