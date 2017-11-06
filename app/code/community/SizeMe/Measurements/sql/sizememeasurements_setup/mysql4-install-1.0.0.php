@@ -79,7 +79,6 @@ foreach ($collection as $attributeSet) {
             $setup->addAttribute('catalog_product', $code, $data);
         }
     }
-
 }
 
 $installer->endSetup();

@@ -77,7 +77,7 @@ class SizeMe_Measurements_Block_Catalog_Product_View_Externals extends Mage_Cata
     {
         return $this->helper('sizeme_measurements')->getCustomSizeSelection() ? 'yes' : 'no';
     }
-	
+    
     /**
      * Returns the version number of the extension.
      *

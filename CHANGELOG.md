@@ -1,5 +1,8 @@
 All notable changes to this project will be documented in this file. This project adheres to Semantic Versioning.
 
+### 1.1.0
+* Code cleanup for Magento Marketplace submission (used phpcs with the MEQP1 standard)
+
 ### 1.0.6
 * Service Status "Test" cleaned up
 * Tracking code improvement

@@ -55,11 +55,11 @@ class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
      * @var float The unit price of the item included in the order.
      */
     protected $_unitPrice;
-	
+    
     /**
      * @var float The unit price of the item included in the order excluding all taxes.
      */
-    protected $_unitPriceExclTax;	
+    protected $_unitPriceExclTax;    
 
     /**
      * @var string the 3-letter ISO code (ISO 4217) for the item currency.
@@ -121,7 +121,7 @@ class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
         $name = $item->getName();
         return $name;
     }
-	
+    
     /**
      * Finds the final price excluding tax for a given item (final means after possible discounts and stuff)
      *
@@ -131,9 +131,9 @@ class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
      */
     protected function fetchFinalPriceExclTax(Mage_Sales_Model_Order_Item $item)
     {
-		$_product = $item->getProduct();
-		$finalPriceExcludingTax = Mage::helper('tax')
-			->getPrice($_product, $_product->getFinalPrice(), false );
+        $_product = $item->getProduct();
+        $finalPriceExcludingTax = Mage::helper('tax')
+            ->getPrice($_product, $_product->getFinalPrice(), false);
         return $finalPriceExcludingTax;
     }
 
@@ -176,7 +176,7 @@ class Sizeme_Measurements_Model_Meta_Order_Item extends Mage_Core_Model_Abstract
     {
         return $this->_unitPrice;
     }
-	
+    
     /**
      * The unit price of the item included in the order excluding tax.
      *

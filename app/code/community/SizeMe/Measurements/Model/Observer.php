@@ -129,7 +129,6 @@ class SizeMe_Measurements_Model_Observer
                 /** @var Sizeme_Measurements_Model_Meta_Quote_Item $item */
                 $item = Mage::getModel('sizeme_measurements/meta_quote_item');
                 $item->send($mageItem);
-
             } catch (Exception $e) {
                 Mage::log("\n" . $e->__toString(), Zend_Log::ERR, 'sizeme_measurements.log');
             }
@@ -159,7 +158,6 @@ class SizeMe_Measurements_Model_Observer
                 $order->loadData($mageOrder);
 
                 $order->send();
-
             } catch (Exception $e) {
                 Mage::log("\n" . $e->__toString(), Zend_Log::ERR, 'sizeme_measurements.log');
             }

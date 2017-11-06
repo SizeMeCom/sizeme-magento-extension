@@ -42,46 +42,49 @@ class Sizeme_Measurements_Model_Meta_Quote_Item extends Mage_Core_Model_Abstract
      */
     public function send(Mage_Sales_Model_Quote_Item $item)
     {
-		$helper = Mage::helper('sizeme_measurements');
-		$api_key = $helper->getApiKey();
+        $helper = Mage::helper('sizeme_measurements');
+        $apiKey = $helper->getApiKey();
 
-		$data_string = json_encode($this->handleQuoteItemToArray($item));
+        $dataString = json_encode($this->handleQuoteItemToArray($item));
 
-		$ch = curl_init(SizeMe_Measurements_Helper_Data::API_CONTEXT_ADDRESS . SizeMe_Measurements_Helper_Data::API_SEND_ADD_TO_CART);
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'Content-Type: application/json',
-			'Content-Length: ' . strlen($data_string),
-			'X-Sizeme-Apikey: ' . $api_key)
-		);
+        $ch = curl_init(
+            SizeMe_Measurements_Helper_Data::API_CONTEXT_ADDRESS . SizeMe_Measurements_Helper_Data::API_SEND_ADD_TO_CART
+        );
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt(
+            $ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($dataString),
+            'X-Sizeme-Apikey: ' . $apiKey)
+        );
 
-		$result = curl_exec($ch);
+        $result = curl_exec($ch);
 
-		return ($result !== false);
-	}
+        return ($result !== false);
+    }
 
     /**
      * Handles the quote item data in to array form
      *
      * @return array
      */
-	public function handleQuoteItemToArray(Mage_Sales_Model_Quote_Item $item)
-	{
+    public function handleQuoteItemToArray(Mage_Sales_Model_Quote_Item $item)
+    {
 
-		$helper = Mage::helper('sizeme_measurements');
-        $session_cookie = $helper->getSessionCookie();
-        $action_cookie = $helper->getActionCookie();
+        $helper = Mage::helper('sizeme_measurements');
+        $sessionCookie = $helper->getSessionCookie();
+        $actionCookie = $helper->getActionCookie();
 
         $arr = array(
-			'SKU' => $item->getSku(),
-			'quantity' => (int)$item->getData('qty'),
-			'name' => $item->getName(),
-			'orderIdentifier' => $session_cookie,
-			'actionIdentifier' => $action_cookie,
+            'SKU' => $item->getSku(),
+            'quantity' => (int)$item->getData('qty'),
+            'name' => $item->getName(),
+            'orderIdentifier' => $sessionCookie,
+            'actionIdentifier' => $actionCookie,
         );
-		return $arr;
-	}
+        return $arr;
+    }
 
 }
