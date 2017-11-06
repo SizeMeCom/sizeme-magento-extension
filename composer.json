@@ -1,0 +1,21 @@
+{
+    "name": "sizeme/sizeme-magento-extension",
+    "description": "SizeMe Magento 1 extension",
+    "license": "OSL v3.0",
+    "type":"magento-module",
+    "keywords": ["sizeme", "size", "size guide", "measurements"],
+    "homepage": "https://github.com/SizeMeCom/sizeme-magento-extension",
+    "authors": [
+        {
+            "name": "Ville Könönen",
+            "email": "ville.kononen@sizeme.com",
+            "homepage": "https://github.com/nomasi",
+            "role": "Plugin Development"
+        }
+    ],
+    "support": {
+        "email": "support@sizeme.com",
+        "issues": "https://github.com/SizeMeCom/sizeme-magento-extension/issues",
+        "source": "https://github.com/SizeMeCom/sizeme-magento-extension"
+    }
+}

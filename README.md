@@ -1,22 +1,38 @@
 # SizeMe for Magento 1
 
-SizeMe is a service designed to help you provide better product information for your customers.
-With SizeMe you can enter the actual measurements of your product and show an actual Size Guide.
-Or you might already find the measurements of the product you are selling in our ever-growing
-hosted Product Database.
+SizeMe is a web store plugin that enables your consumers to input their measurements and get personalised fit recommendations based on actual product data.  It is designed to
+help your users to choose better fitting clothes.
 
-Your users can enter their own physical measurements and get personal information
+SizeMe provides:
+* Size recommendations based on actual measurements
+* Product-specific size guides based on real data
+* Seamless integration on your product page
+
+SizeMe generates input fields where your users can enter their own physical measurements and get personal information
 on how the viewed item will fit them.
 
 [https://www.sizeme.com](https://www.sizeme.com/)
 
 ## Installation notes:
 
+The extension can be installed as a local package by uploading the extension package archive manually in the Magento Connect Manager, or by unpacking it directly into your Magento installation directory which will place the files and folders in the correct places.
+
+The latest extension package archive can be obtained from the project's [releases](https://github.com/SizeMeCom/sizeme-magento-extension/releases) page on GitHub.
+
+## Support:
+
+We are ready to answer all your support related questions at [support@sizeme.com](mailto:support@sizeme.com).
+
+### Extra plugins:
+
+SizeMe requires the access to the size selector of the product page, so if you are using a third-party plugin affecting the Magento native size selector and you have trouble using all of the SizeMe functionality, please see if we have an extra plugin for that specific plugin at our 
+[GitHub](https://github.com/SizeMeCom) page or contact [support@sizeme.com](mailto:support@sizeme.com).
+
 ## Product information:
 SizeMe needs certain product information to function in the first place.  Basically we use a product item type definition and some measurements from each size of the product.  SizeMe offers two different ways of including this information; you can send your item measurement data to us and use the SizeMe Product Database _or_ you can use the store's own database to store the necessary measurements.
 
 1.  Using the SizeMe Product Database
-SizeMe needs at least one measurement per item.  In some cases (like shoes) only one measurement is actually needed to give a good estimate of personal fit.  We have a hosted Product Database and we would be more than happy to host your product measurements for you.  Just send the product measurement data in any format to us, and we'll handle the data and your item measurement data will be made available.  There is also a good possibility that we also have measurements from the products you are selling (we already have a lot shoe measurements for example), so you might want to contact us before submitting any product data.
+SizeMe needs at least one measurement per item.  In some cases (like shoes) only one measurement is actually needed to give a good estimate of personal fit.  We have a hosted Product Database and we would be more than happy to host your product measurements for you.  Just send the product measurement data in any format to us, and we'll handle the data and your item measurement data will be made available.  There is also a good possibility that we also have measurements from the products you are selling (we already have a lot shoe measurements for example), so you might want to contact us at [support@sizeme.com](mailto:support@sizeme.com) before submitting any product data.
 
 We use the product SKU fields to match the products in the store to your measurement data, so please send the SKU data along with the measurement data.
 
@@ -31,21 +47,21 @@ The configurable product should hold the common SizeMe information for the whole
 #### Item Type
 This field works in two wonderful ways:
 
-A)  If you are planning to input the product measurements in your local store database, this field is used to tell SizeMe what the type of the product is.  
+A)  If you are planning to input the product measurements in your local store database, this field is used to tell SizeMe what the type of the product is.
 * Type: string, 7-digit dot-separated code
   Examples:
   * Normal short sleeved T-shirt: 1.1.1.3.0.4.0
   * Sweatshirt with hood: 1.3.1.6.1.4.1
   * Trousers: 2.0.0.6.0.3.0
   * Shoes: 3.0.0.0.0.0.0
-  
+
 B)  If you want to use the SizeMe Template Engine for a quick proof-of-concept or even some actual sales, enter the template name in this field and no other fields are necessary!
 * Type: string
   Examples:
   * Most Vans shoes: SHOE-VANS
   * Basic T-shirt: T-SHIRT
 
-Please contact [sales@sizeme.com](sales@sizeme.com) for more details on both options.  
+Please contact [support@sizeme.com](mailto:support@sizeme.com) for more details on both options.
 
 #### Item Layer
 This code tells on what layer is the product to be worn on.
