@@ -13,7 +13,13 @@ on how the viewed item will fit them.
 
 [https://www.sizeme.com](https://www.sizeme.com/)
 
-## Installation notes:
+## Installation:
+
+### From Magento Marketplace:
+
+The preferred way of installing the SizeMe extension is to follow the instructions at the [SizeMe at Magento Marketplace](https://marketplace.magento.com/sizeme-sizeme.html) page.
+
+### From local package:
 
 The extension can be installed as a local package by uploading the extension package archive manually in the Magento Connect Manager, or by unpacking it directly into your Magento installation directory which will place the files and folders in the correct places.
 
@@ -22,6 +28,8 @@ The latest extension package archive can be obtained from the project's [release
 ## Support:
 
 We are ready to answer all your support related questions at [support@sizeme.com](mailto:support@sizeme.com).
+
+Our Magento 1.9 demo page can be found at [SizeMeDemo.com](https://www.sizemedemo.com/magento19/).
 
 ### Extra plugins:
 
