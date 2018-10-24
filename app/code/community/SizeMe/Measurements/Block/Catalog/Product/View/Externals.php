@@ -67,16 +67,6 @@ class SizeMe_Measurements_Block_Catalog_Product_View_Externals extends Mage_Cata
         return $this->helper('sizeme_measurements')->getServiceStatus();
     }
 
-
-    /**
-     * Get the option for the custom size selection.
-     *
-     * @return string
-     */
-    public function getCustomSizeSelection()
-    {
-        return $this->helper('sizeme_measurements')->getCustomSizeSelection() ? 'yes' : 'no';
-    }
     
     /**
      * Returns the version number of the extension.
