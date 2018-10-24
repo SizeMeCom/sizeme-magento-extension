@@ -131,6 +131,7 @@
                 <lang_override></lang_override>
                 <skin_string></skin_string>
                 <custom_css></custom_css>
+                <additional_translations></additional_translations>
             </ui_options>
         </sizeme_measurements>
     </default>

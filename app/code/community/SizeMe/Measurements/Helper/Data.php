@@ -62,6 +62,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_UI_OPTION_LANG_OVERRIDE          = 'sizeme_measurements/ui_options/lang_override';
     const XML_PATH_UI_OPTION_SKIN_STRING            = 'sizeme_measurements/ui_options/skin_string';
     const XML_PATH_UI_OPTION_CUSTOM_CSS             = 'sizeme_measurements/ui_options/custom_css';
+    const XML_PATH_UI_OPTION_ADDITIONAL_TRANSLATIONS = 'sizeme_measurements/ui_options/additional_translations';
 
 
     /**
@@ -159,6 +160,9 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             ),
             'custom_css' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_CUSTOM_CSS, $store
+            ),
+            'additional_translations' => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_ADDITIONAL_TRANSLATIONS, $store
             ),
         );
     }
@@ -416,7 +420,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $one ? array_pop($attributeCodes) : $attributeCodes;
     }
-
+	
     /**
      * Returns the session cookie value
      *
