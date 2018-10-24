@@ -1,5 +1,9 @@
 All notable changes to this project will be documented in this file. This project adheres to Semantic Versioning.
 
+### 1.1.1
+* Added support to override translation lines from the admin menu
+* Removed size selection modification option (as it won't be supported by the UI anymore)
+
 ### 1.1.0
 * Code cleanup for Magento Marketplace submission (used phpcs with the MEQP1 standard)
 
