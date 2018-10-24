@@ -40,7 +40,6 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
      */
     const XML_PATH_SERVICE_STATUS        = 'sizeme_measurements/general/service_status';
     const XML_PATH_API_KEY               = 'sizeme_measurements/general/api_key';
-    const XML_PATH_CUSTOM_SIZE_SELECTION = 'sizeme_measurements/general/custom_size_selection';
 
     /**
      * Template settings store config save paths.
@@ -126,21 +125,6 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return (string)Mage::getStoreConfig(
             self::XML_PATH_API_KEY,
-            $store
-        );
-    }
-
-    /**
-     * Returns option for the buttonize setting.
-     *
-     * @param Mage_Core_Model_Store $store optional store (will use current store if null).
-     *
-     * @return boolean
-     */
-    public function getCustomSizeSelection(Mage_Core_Model_Store $store = null)
-    {
-        return (bool)Mage::getStoreConfig(
-            self::XML_PATH_CUSTOM_SIZE_SELECTION,
             $store
         );
     }
