@@ -117,7 +117,7 @@
         <sizeme_measurements>
             <general>
                 <service_status>off</service_status>
-                <api_key></api_key>				
+                <api_key></api_key>
                 <custom_size_selection>0</custom_size_selection>
             </general>
             <template_settings>
@@ -131,6 +131,7 @@
                 <lang_override></lang_override>
                 <skin_string></skin_string>
                 <custom_css></custom_css>
+                <additional_translations></additional_translations>
             </ui_options>
         </sizeme_measurements>
     </default>
