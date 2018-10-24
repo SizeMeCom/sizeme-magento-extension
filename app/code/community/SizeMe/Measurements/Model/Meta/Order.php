@@ -149,9 +149,7 @@ class Sizeme_Measurements_Model_Meta_Order extends Mage_Core_Model_Abstract
             'orderStatusCode' => $this->getOrderStatus()->getCode(),
             'orderStatusLabel' => $this->getOrderStatus()->getLabel(),
             'buyer' => array(
-                'firstName' => $this->getBuyerInfo()->getFirstName(),
-                'lastName' => $this->getBuyerInfo()->getLastName(),
-                'email' => $this->getBuyerInfo()->getEmail(),
+                'emailHash' => $this->getBuyerInfo()->getEmailHash(),
             ),
             'createdAt' => $this->getCreatedDate(),
             'purchasedItems' => array(),
