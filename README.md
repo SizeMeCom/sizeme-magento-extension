@@ -128,10 +128,6 @@ Default value: Off
 This plugin sends and receives information from the SizeMe server.  In order to authenticate the source of this information, we use a special API key unique for your store.  In order to get an API key for your store, please contact info@sizeme.com and we'll send one over asap.  This process should be automated somehow in the future (in the year 2000).
 Default value: <none>
 
-#### Change Size Selection to Buttons
-This is a bit of a bonus feature.  If this value is set to "Yes" and the service is "On" or "Test", the plugin will try to convert your size selection drop-down to a set of clickable buttons.  This currently doesn't work with products with multiple selections (such as color _and_ size).
-Default value: No
-
 ### Template Settings:
 
 #### Replace Configurable Product Option Template
@@ -181,3 +177,9 @@ This space-separated list is like a extra class definition for SizeMe content.  
 This text field can be used to write some custom CSS to the page.  This is another opportunity to make changes to the SizeMe user interface, you can change the colors and stuff like that.
 * Type: CSS code
 * Default: defined in sizeme-styles.css
+
+#### Additional Translations
+This text field can be used to override the basic text lines in SizeMe language-specifically if needed.  
+* Type: JSON code
+* Default: empty
+* see the [SizeMe UI GitHub page](https://github.com/SizeMeCom/sizeme-react) for more details
