@@ -37,16 +37,6 @@
 class Sizeme_Measurements_Model_Meta_Order_Buyer extends Mage_Core_Model_Abstract
 {
     /**
-     * @var string the first name of the user who placed the order.
-     */
-    protected $_firstName;
-
-    /**
-     * @var string the last name of the user who placed the order.
-     */
-    protected $_lastName;
-
-    /**
      * @var string the email address of the user who placed the order.
      */
     protected $_email;
@@ -66,29 +56,7 @@ class Sizeme_Measurements_Model_Meta_Order_Buyer extends Mage_Core_Model_Abstrac
      */
     public function loadData(Mage_Sales_Model_Order $order)
     {
-        $this->_firstName = $order->getCustomerFirstname();
-        $this->_lastName = $order->getCustomerLastname();
         $this->_email = $order->getCustomerEmail();
-    }
-
-    /**
-     * Gets the first name of the user who placed the order.
-     *
-     * @return string the first name.
-     */
-    public function getFirstName()
-    {
-        return $this->_firstName;
-    }
-
-    /**
-     * Gets the last name of the user who placed the order.
-     *
-     * @return string the last name.
-     */
-    public function getLastName()
-    {
-        return $this->_lastName;
     }
 
     /**
@@ -96,8 +64,8 @@ class Sizeme_Measurements_Model_Meta_Order_Buyer extends Mage_Core_Model_Abstrac
      *
      * @return string the email address.
      */
-    public function getEmail()
+    public function getEmailHash()
     {
-        return $this->_email;
+        return md5(strtolower($this->_email));
     }
 }

@@ -118,6 +118,7 @@
             <general>
                 <service_status>off</service_status>
                 <api_key></api_key>
+                <custom_size_selection>0</custom_size_selection>
             </general>
             <template_settings>
                 <replace_product_view_type_configurable_template>1</replace_product_view_type_configurable_template>
