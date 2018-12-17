@@ -54,7 +54,7 @@ if ($type) :
     $stretch = (int)$product->getSmiItemStretch();
     $recommendation = (int)$product->getSmiItemFitRecommendation();
 ?>
-      name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
+      name: "<?php echo $this->quoteEscape($product->getName()); ?>",
       item: {
         itemType: "<?php echo $type; ?>",
         itemLayer: <?php echo $layer; ?>,
@@ -65,7 +65,7 @@ if ($type) :
 <?php foreach ($this->getVariations($product) as $code => $variation): ?>
           "<?php echo (int)$code; ?>": {
 <?php foreach ($this->getVariationSizeMeAttributes($variation) as $name => $value): ?>
-            "<?php echo $this->jsQuoteEscape($name); ?>": <?php echo(int)$value; ?>,
+            "<?php echo $this->quoteEscape($name); ?>": <?php echo(int)$value; ?>,
 <?php endforeach; ?>
           },
 <?php endforeach; ?>
@@ -76,13 +76,13 @@ if ($type) :
 <?php
       // write version for templated use of SizeMe Product Database
 ?>
-      name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
-      SKU: "<?php echo $this->jsQuoteEscape($type); ?>",
+      name: "<?php echo $this->quoteEscape($product->getName()); ?>",
+      SKU: "<?php echo $this->quoteEscape($type); ?>",
       item: {
 <?php foreach ($this->getVariations($product) as $code => $variation):
   $size = $this->getSizeAttributeValueLabels($variation);
 ?>
-          "<?php echo $this->jsQuoteEscape($type.'_'.$size); ?>": "<?php echo (int)$code; ?>",
+          "<?php echo $this->quoteEscape($type.'_'.$size); ?>": "<?php echo (int)$code; ?>",
 <?php endforeach; ?>
       }
 <?php
@@ -94,11 +94,11 @@ else:
 <?php
   // else write version to use SKU's to find this one in the universal SizeMe Product Database
 ?>
-    name: "<?php echo $this->jsQuoteEscape($product->getName()); ?>",
-    SKU: "<?php echo $this->jsQuoteEscape($product->getSKU()); ?>",
+    name: "<?php echo $this->quoteEscape($product->getName()); ?>",
+    SKU: "<?php echo $this->quoteEscape($product->getSKU()); ?>",
     item: {
 <?php foreach ($this->getVariations($product) as $code => $variation): ?>
-        "<?php echo $this->jsQuoteEscape($variation->getSKU()); ?>": "<?php echo (int)$code; ?>",
+        "<?php echo $this->quoteEscape($variation->getSKU()); ?>": "<?php echo (int)$code; ?>",
 <?php endforeach; ?>
     }
 <?php
