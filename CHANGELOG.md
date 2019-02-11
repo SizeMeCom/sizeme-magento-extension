@@ -1,5 +1,8 @@
 All notable changes to this project will be documented in this file. This project adheres to Semantic Versioning.
 
+### 1.1.2
+* Fixed bug in quoting outputs
+
 ### 1.1.1
 * Added support to override translation lines from the admin menu
 * Removed size selection modification option (as it won't be supported by the UI anymore)

@@ -21,7 +21,7 @@
  * @category  SizeMe
  * @package   SizeMe_Measurements
  * @author    SizeMe Ltd <plugins@sizeme.com>
- * @copyright Copyright (c) 2017 SizeMe Ltd (https://www.sizeme.com/)
+ * @copyright Copyright (c) SizeMe Ltd (https://www.sizeme.com/)
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 ?>
@@ -36,7 +36,7 @@
 <script type="text/javascript">
 //<![CDATA[
 var sizeme_options = {
-	serviceStatus: "<?php echo $this->jsQuoteEscape($this->getServiceStatus()); ?>",
+	serviceStatus: "<?php echo $this->quoteEscape($this->getServiceStatus()); ?>",
 	pluginVersion: "<?php echo $this->getModuleVersion(); ?>",
 	shopType: "magento",
 	uiOptions: {}
@@ -58,7 +58,7 @@ var sizeme_options = {
 
 	foreach($allSizeMeOptions as $key => $value) {
 		// write all non-empty fields to override platform specific default values defined in standard js
-		if (trim($uiOptions[$value])) echo 'sizeme_options.uiOptions.'.$key.' = "'.$this->jsQuoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
+		if (trim($uiOptions[$value])) echo 'sizeme_options.uiOptions.'.$key.' = "'.$this->quoteEscape(trim($uiOptions[$value])).'";'.PHP_EOL;
 	}
 
 	// SWATCHES
@@ -72,7 +72,7 @@ var sizeme_options = {
 	
 	// ADDITIONAL TRANSLATIONS (from the UI OPTIONS array)
 	if (trim($uiOptions['additional_translations'])) {
-		echo 'sizeme_options.additionalTranslations = '.$this->jsQuoteEscape(trim($uiOptions['additional_translations'])).';'.PHP_EOL;
+		echo 'sizeme_options.additionalTranslations = '.$this->quoteEscape(trim($uiOptions['additional_translations'])).';'.PHP_EOL;
 	}
 
 	$sizeme_address = "sizeme.com";
@@ -80,6 +80,7 @@ var sizeme_options = {
 	// TEST MODE
 	if ( $this->helper('sizeme_measurements')->isServiceTest() ) {
 		echo 'sizeme_options.debugState = "true";'.PHP_EOL;
+		$sizeme_address = "test.sizeme.com";
 	}
 
 ?>
@@ -93,4 +94,4 @@ var sizeme_options = {
 
 <?php
 // write possible custom css
-if (trim($uiOptions['custom_css'])) echo '<style type="text/css">'.$this->jsQuoteEscape(trim($uiOptions['custom_css'])).'</style>'.PHP_EOL;
+if (trim($uiOptions['custom_css'])) echo '<style type="text/css">'.$this->quoteEscape(trim($uiOptions['custom_css'])).'</style>'.PHP_EOL;
