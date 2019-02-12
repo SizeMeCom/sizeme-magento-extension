@@ -44,7 +44,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Template settings store config save paths.
      */
-    const XML_PATH_TEMPLATE_SETTINGS_REPLACE_PRODUCT_VIEW_TYPE_CONFIGURABLE_TEMPLATE = 
+    const XML_PATH_TEMPLATE_SETTINGS_REPLACE_PRODUCT_VIEW_TYPE_CONFIGURABLE_TEMPLATE =
         'sizeme_measurements/template_settings/replace_product_view_type_configurable_template';
 
     /**
@@ -61,6 +61,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_UI_OPTION_SIZE_SELECTOR_TYPE     = 'sizeme_measurements/ui_options/size_selector_type';
     const XML_PATH_UI_OPTION_LANG_OVERRIDE          = 'sizeme_measurements/ui_options/lang_override';
     const XML_PATH_UI_OPTION_SKIN_STRING            = 'sizeme_measurements/ui_options/skin_string';
+    const XML_PATH_UI_OPTION_MAX_REC_DISTANCE       = 'sizeme_measurements/ui_options/max_recommendation_distance';
     const XML_PATH_UI_OPTION_CUSTOM_CSS             = 'sizeme_measurements/ui_options/custom_css';
     const XML_PATH_UI_OPTION_ADDITIONAL_TRANSLATIONS = 'sizeme_measurements/ui_options/additional_translations';
 
@@ -157,6 +158,9 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             ),
             'skin_string' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_SKIN_STRING, $store
+            ),
+            'max_recommendation_distance' => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_MAX_REC_DISTANCE, $store
             ),
             'custom_css' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_CUSTOM_CSS, $store
@@ -420,7 +424,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $one ? array_pop($attributeCodes) : $attributeCodes;
     }
-	
+
     /**
      * Returns the session cookie value
      *

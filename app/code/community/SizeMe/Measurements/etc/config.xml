@@ -129,6 +129,7 @@
                 <size_selector_type></size_selector_type>
                 <lang_override></lang_override>
                 <skin_string></skin_string>
+                <max_recommendation_distance></max_recommendation_distance>
                 <custom_css></custom_css>
                 <additional_translations></additional_translations>
             </ui_options>

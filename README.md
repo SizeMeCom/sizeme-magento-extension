@@ -173,6 +173,11 @@ This space-separated list is like a extra class definition for SizeMe content.  
 * Type: string
 * Default: empty
 
+#### Max Recommendation Distance
+Defines the max distance between the recommended fit and the user's fit where SizeMe still makes a size recommendation
+* Type: integer
+* Default: empty
+
 #### Custom Style Overrides
 This text field can be used to write some custom CSS to the page.  This is another opportunity to make changes to the SizeMe user interface, you can change the colors and stuff like that.
 * Type: CSS code
