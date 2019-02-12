@@ -77,7 +77,7 @@ var sizeme_options = {
 
 	// ADDITIONAL TRANSLATIONS (from the UI OPTIONS array)
 	if (trim($uiOptions['additional_translations'])) {
-		echo 'sizeme_options.additionalTranslations = '.$this->quoteEscape(trim($uiOptions['additional_translations'])).';'.PHP_EOL;
+		echo 'sizeme_options.additionalTranslations = '.$this->jsQuoteEscape(trim($uiOptions['additional_translations'])).';'.PHP_EOL;
 	}
 
 	$sizeme_address = "sizeme.com";
