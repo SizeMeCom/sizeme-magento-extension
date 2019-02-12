@@ -62,6 +62,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_UI_OPTION_LANG_OVERRIDE          = 'sizeme_measurements/ui_options/lang_override';
     const XML_PATH_UI_OPTION_SKIN_STRING            = 'sizeme_measurements/ui_options/skin_string';
     const XML_PATH_UI_OPTION_MAX_REC_DISTANCE       = 'sizeme_measurements/ui_options/max_recommendation_distance';
+    const XML_PATH_UI_OPTION_TOGGLER                = 'sizeme_measurements/ui_options/toggler';
     const XML_PATH_UI_OPTION_CUSTOM_CSS             = 'sizeme_measurements/ui_options/custom_css';
     const XML_PATH_UI_OPTION_ADDITIONAL_TRANSLATIONS = 'sizeme_measurements/ui_options/additional_translations';
 
@@ -162,6 +163,9 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
             'max_recommendation_distance' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_MAX_REC_DISTANCE, $store
             ),
+            'toggler' => Mage::getStoreConfig(
+                self::XML_PATH_UI_OPTION_TOGGLER, $store
+            ),
             'custom_css' => Mage::getStoreConfig(
                 self::XML_PATH_UI_OPTION_CUSTOM_CSS, $store
             ),
@@ -194,6 +198,21 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     public function isServiceTest()
     {
         return ( $this->getServiceStatus() === self::SERVICE_STATUS_TEST);
+    }
+
+
+
+    /**
+     * Returns if toggler is "on".
+     *
+     * @return bool true if toggling, false otherwise.
+     */
+    public function isTogglerOn()
+    {
+		return (bool)Mage::getStoreConfig(
+			self::XML_PATH_UI_OPTION_TOGGLER,
+			$store
+		);
     }
 
 
