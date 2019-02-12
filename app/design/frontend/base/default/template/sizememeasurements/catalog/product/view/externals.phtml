@@ -39,6 +39,7 @@ var sizeme_options = {
 	serviceStatus: "<?php echo $this->quoteEscape($this->getServiceStatus()); ?>",
 	pluginVersion: "<?php echo $this->getModuleVersion(); ?>",
 	shopType: "magento",
+	clientKey: "<?php echo hash( 'sha256', $this->helper('sizeme_measurements')->getApiKey() ); ?>",
 	uiOptions: {}
 };
 
@@ -86,6 +87,11 @@ var sizeme_options = {
 	if ( $this->helper('sizeme_measurements')->isServiceTest() ) {
 		echo 'sizeme_options.debugState = "true";'.PHP_EOL;
 		$sizeme_address = "test.sizeme.com";
+	}
+
+	// TOGGLER
+	if ( $this->helper('sizeme_measurements')->isTogglerOn() ) {
+		echo 'sizeme_options.uiOptions.toggler = "true";'.PHP_EOL;
 	}
 
 ?>
