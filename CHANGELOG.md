@@ -2,6 +2,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### 1.1.2
 * Fixed bug in quoting outputs
+* Added configuration for Max Recommendation Distance
 
 ### 1.1.1
 * Added support to override translation lines from the admin menu
