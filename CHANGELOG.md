@@ -1,5 +1,8 @@
 All notable changes to this project will be documented in this file. This project adheres to Semantic Versioning.
 
+### 1.1.4
+* Updated cart tracking to use our own sm_cart cookie
+
 ### 1.1.3
 * Added support for the SizeMe toggler
 * Added clientKey to sizeme_options for potential custom contacting

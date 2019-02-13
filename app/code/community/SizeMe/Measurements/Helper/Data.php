@@ -86,7 +86,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     const API_CONTEXT_ADDRESS   = 'https://sizeme.com';
     const API_SEND_ORDER_INFO   = '/shop-api/sendOrderComplete';
     const API_SEND_ADD_TO_CART  = '/shop-api/sendAddToCart';
-    const COOKIE_SESSION        = 'frontend';       // Magento specific
+    const COOKIE_SESSION        = 'sm_cart';
     const COOKIE_ACTION         = 'sm_action';
 
     /**
@@ -210,8 +210,7 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     public function isTogglerOn()
     {
 		return (bool)Mage::getStoreConfig(
-			self::XML_PATH_UI_OPTION_TOGGLER,
-			$store
+			self::XML_PATH_UI_OPTION_TOGGLER
 		);
     }
 
@@ -452,7 +451,13 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
     public function getSessionCookie()
     {
         $cookie = Mage::getModel('core/cookie');
-        return $cookie->get(self::COOKIE_SESSION);
+        $val = $cookie->get(self::COOKIE_SESSION);
+        if (!$val) {
+            $val = md5(rand().microtime());
+            $_COOKIE[ self::COOKIE_SESSION ] = $val;
+            $cookie->set( self::COOKIE_SESSION , $val, 86400, '/' );
+        }
+        return $val;
     }
 
     /**

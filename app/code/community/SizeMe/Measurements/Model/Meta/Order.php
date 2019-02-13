@@ -196,6 +196,11 @@ class Sizeme_Measurements_Model_Meta_Order extends Mage_Core_Model_Abstract
 
         $result = curl_exec($ch);
 
+        if ($result !== false) {
+            Mage::getModel('core/cookie')->set( SizeMe_Measurements_Helper_Data::COOKIE_SESSION, '', -3600 , '/' );
+            unset( $_COOKIE[ SizeMe_Measurements_Helper_Data::COOKIE_SESSION ] );
+        }
+
         return ($result !== false);
     }
 
