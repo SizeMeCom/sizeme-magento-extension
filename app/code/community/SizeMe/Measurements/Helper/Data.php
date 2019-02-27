@@ -450,11 +450,11 @@ class SizeMe_Measurements_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getSessionCookie()
     {
-        $cookie = Mage::getModel('core/cookie');
-        $val = $cookie->get(self::COOKIE_SESSION);
+        $val = (isset($_COOKIE[ self::COOKIE_SESSION ]) ? $_COOKIE[ self::COOKIE_SESSION ] : '');
         if (!$val) {
             $val = md5(rand().microtime());
             $_COOKIE[ self::COOKIE_SESSION ] = $val;
+            $cookie = Mage::getModel('core/cookie');
             $cookie->set( self::COOKIE_SESSION , $val, 86400, '/' );
         }
         return $val;
