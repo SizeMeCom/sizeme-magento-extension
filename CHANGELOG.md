@@ -1,5 +1,8 @@
 All notable changes to this project will be documented in this file. This project adheres to Semantic Versioning.
 
+### 1.1.7
+* Yet another cart tracking change
+
 ### 1.1.6
 * Clean version release
 

@@ -125,7 +125,6 @@ class SizeMe_Measurements_Model_Observer
             try {
                 /** @var Mage_Sales_Model_Quote_Item $mageItem */
                 $mageItem = $observer->getEvent()->getQuoteItem();
-
                 /** @var Sizeme_Measurements_Model_Meta_Quote_Item $item */
                 $item = Mage::getModel('sizeme_measurements/meta_quote_item');
                 $item->send($mageItem);
