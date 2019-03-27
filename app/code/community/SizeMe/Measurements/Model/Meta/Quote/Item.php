@@ -74,14 +74,16 @@ class Sizeme_Measurements_Model_Meta_Quote_Item extends Mage_Core_Model_Abstract
     {
 
         $helper = Mage::helper('sizeme_measurements');
-        $sessionCookie = $helper->getSessionCookie();
+        $quote = $item->getQuote();
+        $quote->save();
+        $orderIdentifier = md5((string)$quote->getId());
         $actionCookie = $helper->getActionCookie();
 
         $arr = array(
             'SKU' => $item->getSku(),
             'quantity' => (int)$item->getData('qty'),
             'name' => $item->getName(),
-            'orderIdentifier' => $sessionCookie,
+            'orderIdentifier' => $orderIdentifier,
             'actionIdentifier' => $actionCookie,
         );
         return $arr;

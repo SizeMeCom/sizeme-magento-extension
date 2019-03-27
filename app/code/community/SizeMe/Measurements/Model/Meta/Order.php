@@ -90,8 +90,7 @@ class Sizeme_Measurements_Model_Meta_Order extends Mage_Core_Model_Abstract
         $this->_orderNumber = $order->getIncrementId();
         $this->_createdDate = $order->getCreatedAt();
 
-        $helper = Mage::helper('sizeme_measurements');
-        $this->_orderIdentifier = $helper->getSessionCookie();
+        $this->_orderIdentifier = md5((string)$order->getQuoteId());
 
         /** @var Sizeme_Measurements_Model_Meta_Order_Status $orderStatus */
         $orderStatus = Mage::getModel('sizeme_measurements/meta_order_status');
@@ -195,11 +194,6 @@ class Sizeme_Measurements_Model_Meta_Order extends Mage_Core_Model_Abstract
         );
 
         $result = curl_exec($ch);
-
-        if ($result !== false) {
-            Mage::getModel('core/cookie')->set( SizeMe_Measurements_Helper_Data::COOKIE_SESSION, '', -3600 , '/' );
-            unset( $_COOKIE[ SizeMe_Measurements_Helper_Data::COOKIE_SESSION ] );
-        }
 
         return ($result !== false);
     }
