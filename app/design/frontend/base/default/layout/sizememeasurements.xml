@@ -29,6 +29,16 @@
 <layout version="1.0.0">
     <!-- Product page -->
     <catalog_product_view>
+        <!-- In head <head> near end -->
+        <reference name="head">
+            <block type="core/text" name="sizeme.cdn.store">
+                <action method="setText">
+                    <text>
+                    <![CDATA[<script defer type="text/javascript" src="//cdn.sizeme.com/store/sizeme.js"></script>]]>
+                    </text>
+                </action>
+            </block>
+        </reference>
         <!-- Before Page <body> end -->
         <reference name="before_body_end">
             <!-- Add SizeMe CSS & JavaScript -->
